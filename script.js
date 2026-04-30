@@ -1311,10 +1311,10 @@ let currentLang = "de";
 let isPlaying = true;
 let animationTime = 0;
 let chartFrame = null;
-const MAIN_ANIMATION_SPEED = 0.45;
-const MAIN_ANIMATION_PROGRESS_FRAMES = 240;
-const MAIN_ANIMATION_LOOP_FRAMES = 320;
-const HERO_MODEL_INTERVAL_MS = 12000;
+const MAIN_ANIMATION_SPEED = 0.22;
+const MAIN_ANIMATION_PROGRESS_FRAMES = 520;
+const MAIN_ANIMATION_LOOP_FRAMES = 780;
+const HERO_MODEL_INTERVAL_MS = 26000;
 
 function t(key) {
   return I18N[currentLang][key] ?? I18N.de[key] ?? key;
@@ -1338,6 +1338,11 @@ function modelDescription(model) {
 
 function modelObservables(model) {
   return currentLang === "en" ? MODEL_EN[model.id]?.[2] ?? model.observables : model.observables;
+}
+
+function scientificProgress(rawProgress) {
+  const x = clamp(rawProgress, 0, 1);
+  return x * x * (3 - 2 * x);
 }
 
 function sigmoid(x) {
@@ -1894,7 +1899,7 @@ function currentKnobs() {
 function drawMainChart(resetProgress = false) {
   if (resetProgress) animationTime = 0;
   const points = simulate(selectedModel, currentKnobs());
-  const progress = isPlaying ? clamp(animationTime / MAIN_ANIMATION_PROGRESS_FRAMES, 0.08, 1) : 1;
+  const progress = isPlaying ? clamp(0.06 + 0.94 * scientificProgress(animationTime / MAIN_ANIMATION_PROGRESS_FRAMES), 0.06, 1) : 1;
   drawChart(qs("#main-chart"), selectedModel, points, progress);
   renderLegend(selectedModel);
 }
@@ -1917,7 +1922,7 @@ function animateCharts() {
   const heroPhase = Date.now() / HERO_MODEL_INTERVAL_MS;
   const heroModel = MODELS[Math.floor(heroPhase) % MODELS.length];
   qs("#hero-model-name").textContent = modelName(heroModel);
-  drawChart(qs("#hero-chart"), heroModel, simulate(heroModel, {}, 190, 0.28), 0.18 + 0.82 * (heroPhase % 1));
+  drawChart(qs("#hero-chart"), heroModel, simulate(heroModel, {}, 190, 0.28), 0.08 + 0.92 * scientificProgress(heroPhase % 1));
   chartFrame = requestAnimationFrame(animateCharts);
 }
 
