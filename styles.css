@@ -150,6 +150,30 @@ main,
   font-size: 0.92rem;
 }
 
+.language-switch {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 38px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.language-switch button {
+  min-width: 46px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.language-switch button.active {
+  background: var(--ink);
+  color: #090b0f;
+}
+
 .topbar-actions a:hover {
   color: var(--ink);
   border-color: var(--line);
@@ -657,15 +681,13 @@ main,
   gap: 12px;
 }
 
-.priority-grid article,
-.deploy-steps article {
+.priority-grid article {
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.055);
   padding: 18px;
 }
 
-.priority-grid span,
-.deploy-steps span {
+.priority-grid span {
   color: var(--amber);
   font-family: var(--mono);
   font-weight: 900;
@@ -677,22 +699,8 @@ main,
   line-height: 1.08;
 }
 
-.priority-grid p,
-.deploy-steps p {
+.priority-grid p {
   color: var(--muted);
-}
-
-.deploy-steps {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.deploy-steps strong {
-  display: block;
-  margin-top: 22px;
-  font-family: var(--serif);
-  font-size: 1.5rem;
 }
 
 .site-footer {
@@ -786,8 +794,7 @@ main,
   .stats-band,
   .control-strip,
   .model-grid,
-  .priority-grid,
-  .deploy-steps {
+  .priority-grid {
     grid-template-columns: 1fr;
   }
 

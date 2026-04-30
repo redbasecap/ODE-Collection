@@ -1,13 +1,116 @@
 const CATEGORIES = [
-  { id: "ovarian", label: "A. Ovarielle Reserve", accent: "#ff5d73" },
-  { id: "hormones", label: "B. Hormonelle Systeme", accent: "#33c2ff" },
-  { id: "health", label: "C. Gesundheit, Sport, Ernaehrung", accent: "#45d483" },
-  { id: "business", label: "D. Startups, Business, Wachstum", accent: "#ffb84d" },
-  { id: "ai", label: "E. KI, Software, Plattformen", accent: "#b38cff" },
-  { id: "finance", label: "F. Finanzen und Maerkte", accent: "#f4dc57" },
-  { id: "physics", label: "G. Physik, Technik, Alltag", accent: "#65d7c9" },
-  { id: "society", label: "H. Oekologie und Gesellschaft", accent: "#f08ad6" },
+  { id: "ovarian", label: { de: "A. Ovarielle Reserve", en: "A. Ovarian Reserve" }, accent: "#ff5d73" },
+  { id: "hormones", label: { de: "B. Hormonelle Systeme", en: "B. Hormonal Systems" }, accent: "#33c2ff" },
+  { id: "health", label: { de: "C. Gesundheit, Sport, Ernährung", en: "C. Health, Sport, Nutrition" }, accent: "#45d483" },
+  { id: "business", label: { de: "D. Startups, Business, Wachstum", en: "D. Startups, Business, Growth" }, accent: "#ffb84d" },
+  { id: "ai", label: { de: "E. KI, Software, Plattformen", en: "E. AI, Software, Platforms" }, accent: "#b38cff" },
+  { id: "finance", label: { de: "F. Finanzen und Märkte", en: "F. Finance and Markets" }, accent: "#f4dc57" },
+  { id: "physics", label: { de: "G. Physik, Technik, Alltag", en: "G. Physics, Technology, Everyday Life" }, accent: "#65d7c9" },
+  { id: "society", label: { de: "H. Ökologie und Gesellschaft", en: "H. Ecology and Society" }, accent: "#f08ad6" },
 ];
+
+const I18N = {
+  de: {
+    brandSub: "90 dynamische Modelle",
+    navLibrary: "Bibliothek",
+    navSimulator: "Simulator",
+    heroEyebrow: "Differentialgleichungen als lebendige Sammlung",
+    heroTitle: "Die ODE-Bibliothek für Reproduktion, Hormone, Business, KI, Physik und Gesellschaft.",
+    heroLead: "Eine zweisprachige Web-App mit 90 Modellideen, animierten Trajektorien, sofort simulierbaren Graphen und einer Struktur, die später echte Daten aufnehmen kann.",
+    heroPrimary: "Simulator starten",
+    heroSecondary: "Alle Modelle ansehen",
+    liveSystem: "Live-System",
+    instrumentA: "RK4-Engine",
+    instrumentB: "Canvas-Graphen",
+    instrumentC: "DE/EN Atlas",
+    statModels: "ODE-Ideen",
+    statDomains: "Domänen",
+    statLang: "Sprachen",
+    statAtlas: "ODE-Atlas",
+    libraryEyebrow: "Bibliothek",
+    libraryTitle: "90 Modelle, sortierbar nach Domäne und Dynamik.",
+    libraryLead: "Suche nach Begriffen wie AMH, Churn, SIR, GPU, Akku oder Cash. Jeder Eintrag besitzt eine ODE-Kernidee, eine Formel und eine Startsimulation.",
+    searchLabel: "Suche",
+    searchPlaceholder: "z.B. AMH, SaaS, SIR, Koffein",
+    categoryLabel: "Kategorie",
+    allCategories: "Alle Kategorien",
+    dynamicLabel: "Dynamik",
+    simulatorEyebrow: "Simulator",
+    simulatorTitle: "Wähle ein Modell, verändere Parameter, beobachte die Trajektorie.",
+    odeCore: "ODE-Kern",
+    observables: "Messgrößen",
+    parameters: "Parameter",
+    graphLab: "Graph-Labor",
+    roadmapEyebrow: "Top-Projektpfad",
+    roadmapTitle: "Die 5 stärksten Ovarialreserve-Modelle für ein echtes Datenprojekt.",
+    footerDisclaimer: "Educational ODE simulations only. Medizinische und finanzielle Modelle sind keine Diagnose, Therapie-, Investment- oder Entscheidungsberatung.",
+    backTop: "Zurück nach oben",
+    cardGraph: "Graph",
+    graphAria: "simulieren",
+    dynamics: {
+      all: "Alle Dynamiken",
+      decay: "Abnahme",
+      growth: "Wachstum",
+      feedback: "Feedback",
+      compartment: "Kompartiment",
+      observer: "Beobachtung",
+      rhythm: "Rhythmus",
+      shock: "Schock",
+      threshold: "Schwelle",
+      resource: "Ressource",
+    },
+  },
+  en: {
+    brandSub: "90 dynamic models",
+    navLibrary: "Library",
+    navSimulator: "Simulator",
+    heroEyebrow: "Differential equations as a living collection",
+    heroTitle: "The ODE library for reproduction, hormones, business, AI, physics, and society.",
+    heroLead: "A bilingual web app with 90 model ideas, animated trajectories, instantly simulated graphs, and a structure ready for real data later.",
+    heroPrimary: "Start simulator",
+    heroSecondary: "Explore all models",
+    liveSystem: "Live system",
+    instrumentA: "RK4 engine",
+    instrumentB: "Canvas graphs",
+    instrumentC: "DE/EN atlas",
+    statModels: "ODE ideas",
+    statDomains: "domains",
+    statLang: "languages",
+    statAtlas: "ODE atlas",
+    libraryEyebrow: "Library",
+    libraryTitle: "90 models, sortable by domain and dynamic behavior.",
+    libraryLead: "Search for terms such as AMH, churn, SIR, GPU, battery, or cash. Every entry includes an ODE core idea, a formula, and a starter simulation.",
+    searchLabel: "Search",
+    searchPlaceholder: "e.g. AMH, SaaS, SIR, caffeine",
+    categoryLabel: "Category",
+    allCategories: "All categories",
+    dynamicLabel: "Dynamics",
+    simulatorEyebrow: "Simulator",
+    simulatorTitle: "Choose a model, adjust parameters, and watch the trajectory.",
+    odeCore: "ODE core",
+    observables: "Observables",
+    parameters: "Parameters",
+    graphLab: "Graph lab",
+    roadmapEyebrow: "Top project path",
+    roadmapTitle: "The 5 strongest ovarian-reserve models for a real data project.",
+    footerDisclaimer: "Educational ODE simulations only. Medical and financial models are not diagnosis, treatment, investment, or decision advice.",
+    backTop: "Back to top",
+    cardGraph: "Graph",
+    graphAria: "simulate",
+    dynamics: {
+      all: "All dynamics",
+      decay: "decline",
+      growth: "growth",
+      feedback: "feedback",
+      compartment: "compartment",
+      observer: "observation",
+      rhythm: "rhythm",
+      shock: "shock",
+      threshold: "threshold",
+      resource: "resource",
+    },
+  },
+};
 
 const MODELS = [
   {
@@ -16,7 +119,7 @@ const MODELS = [
     name: "Einfache Eizellreserve-Abnahme",
     dynamic: "decay",
     formula: "dR/dt = -k R",
-    description: "Basislinie fuer Reserveverlust mit konstanter Rate.",
+    description: "Basislinie für Reserveverlust mit konstanter Rate.",
     variables: ["R"],
     observables: "Reserve R, verbleibender Anteil",
     params: { k: 0.035, initial: 1 },
@@ -39,8 +142,8 @@ const MODELS = [
     category: "ovarian",
     name: "Zwei-Phasen-Abbau vor/nach 35",
     dynamic: "decay",
-    formula: "dR/dt = -k(t) R, k(t)=k1 fuer t<35 sonst k2",
-    description: "Stueckweise Dynamik fuer langsamere und schnellere Reserveabnahme.",
+    formula: "dR/dt = -k(t) R, k(t)=k1 (t<35), k2 (t>=35)",
+    description: "Stückweise Dynamik für langsamere und schnellere Reserveabnahme.",
     variables: ["R"],
     observables: "Reserve R, Knickpunkt t=35",
     params: { k1: 0.018, k2: 0.065, initial: 1 },
@@ -52,7 +155,7 @@ const MODELS = [
     name: "Primordial -> primary -> antral follicle",
     dynamic: "compartment",
     formula: "P'=-lambda P; Q'=lambda P-mu Q; A'=mu Q-nu A",
-    description: "Kompartimentfluss von fruehen zu antralen Follikeln.",
+    description: "Kompartimentfluss von frühen zu antralen Follikeln.",
     variables: ["P", "Q", "A"],
     observables: "Primordial P, primary Q, antral A",
     params: { lambda: 0.018, mu: 0.06, nu: 0.09 },
@@ -76,7 +179,7 @@ const MODELS = [
     name: "AFC-Prognose aus Follikelpopulation",
     dynamic: "compartment",
     formula: "A'=s-d A; AFC'=eta A-gamma AFC",
-    description: "AFC wird als geglaettete Beobachtung der antralen Population modelliert.",
+    description: "AFC wird als geglättete Beobachtung der antralen Population modelliert.",
     variables: ["A", "AFC"],
     observables: "Antrale Follikel A, AFC",
     params: { source: 0.18, d: 0.08, eta: 1.25, gamma: 0.35 },
@@ -100,7 +203,7 @@ const MODELS = [
     name: "Ovarialreserve nach Chemotherapie",
     dynamic: "shock",
     formula: "dR/dt = -k R - chi(t) R",
-    description: "Akuter zusaetzlicher Verlustimpuls waehrend Chemotherapie.",
+    description: "Akuter zusätzlicher Verlustimpuls während Chemotherapie.",
     variables: ["R"],
     observables: "Reserve vor/nach Therapieimpuls",
     params: { k: 0.018, shock: 0.62, center: 25, width: 5 },
@@ -112,7 +215,7 @@ const MODELS = [
     name: "Radiotherapie-Schadensmodell",
     dynamic: "shock",
     formula: "dR/dt = -k R - s D(t) R",
-    description: "Dosisabhaengiger Kill-Term fuer Reserveverlust.",
+    description: "Dosisabhängiger Kill-Term für Reserveverlust.",
     variables: ["R"],
     observables: "Reserve, kumulative Dosiswirkung",
     params: { k: 0.016, shock: 0.5, center: 32, width: 8 },
@@ -136,7 +239,7 @@ const MODELS = [
     name: "PCOS-Modell",
     dynamic: "feedback",
     formula: "A'=lambda P + e - m A; H'=a A - c H",
-    description: "Hohe antrale Follikelzahl und veraenderte hormonelle Reifung.",
+    description: "Hohe antrale Follikelzahl und veränderte hormonelle Reifung.",
     variables: ["P", "A", "H"],
     observables: "Antrale Follikel, Androgen-/Hormonindex",
     params: { lambda: 0.012, excess: 0.13, m: 0.04, a: 0.22, c: 0.16 },
@@ -148,7 +251,7 @@ const MODELS = [
     name: "Menopause-Schwellenmodell",
     dynamic: "threshold",
     formula: "R'=-k R; M'=sigma((Rc-R)/w)-d M",
-    description: "Menopause-Signal steigt, sobald die Reserve unter eine Schwelle faellt.",
+    description: "Menopause-Signal steigt, sobald die Reserve unter eine Schwelle fällt.",
     variables: ["R", "M"],
     observables: "Reserve R, Schwellenwahrscheinlichkeit M",
     params: { k: 0.045, rc: 0.22, width: 0.04, d: 0.08 },
@@ -157,7 +260,7 @@ const MODELS = [
   {
     id: 13,
     category: "ovarian",
-    name: "AMH-Verlauf ueber Jahre",
+    name: "AMH-Verlauf über Jahre",
     dynamic: "observer",
     formula: "A'=s-d A; AMH'=g A-c AMH",
     description: "AMH als dynamische Beobachtung antraler Follikel.",
@@ -169,12 +272,12 @@ const MODELS = [
   {
     id: 14,
     category: "ovarian",
-    name: "Zykluslaenge als Folge von Reserve",
+    name: "Zykluslänge als Folge von Reserve",
     dynamic: "feedback",
     formula: "R'=-k R; C'=a(h(R)-C)",
-    description: "Zykluslaenge passt sich langsam an Reserve und Follikeldynamik an.",
+    description: "Zykluslänge passt sich langsam an Reserve und Follikeldynamik an.",
     variables: ["R", "Cycle"],
-    observables: "Reserve, Zykluslaenge",
+    observables: "Reserve, Zykluslänge",
     params: { k: 0.028, adapt: 0.25, base: 27, sens: 5 },
     preset: "cycleLength",
   },
@@ -193,10 +296,10 @@ const MODELS = [
   {
     id: 16,
     category: "ovarian",
-    name: "Risiko fuer poor responder",
+    name: "Risiko für poor responder",
     dynamic: "threshold",
     formula: "A'=-k A; P'=a(sigma((Ac-A)/w)-P)",
-    description: "Risiko folgt einem geglaetteten AFC-Schwellenwert.",
+    description: "Risiko folgt einem gegeglätteten AFC-Schwellenwert.",
     variables: ["A", "Risk"],
     observables: "AFC, Poor-responder-Risiko",
     params: { k: 0.04, ac: 0.32, width: 0.05, adapt: 0.5 },
@@ -210,7 +313,7 @@ const MODELS = [
     formula: "R'=-k R; k'=a(k_family-k)",
     description: "Individueller Abbauparameter wird zu einem Familienprior gezogen.",
     variables: ["R", "k"],
-    observables: "Reserve, persoenlicher Abbauparameter",
+    observables: "Reserve, persönlicher Abbauparameter",
     params: { k: 0.035, familyK: 0.045, adapt: 0.06 },
     preset: "adaptiveDecayRate",
   },
@@ -244,7 +347,7 @@ const MODELS = [
     name: "Multi-Zyklus-IVF-Simulation",
     dynamic: "resource",
     formula: "R'=-k R-d u(t) Resp; Resp'=s u(t) R/(Km+R)-c Resp",
-    description: "Reserve sinkt ueber mehrere Stimulationszyklen, Antwort schwankt.",
+    description: "Reserve sinkt über mehrere Stimulationszyklen, Antwort schwankt.",
     variables: ["R", "Response"],
     observables: "Reserve, Zyklusantwort",
     params: { k: 0.01, drain: 0.05, s: 0.45, km: 0.2, c: 0.15, u: 0.8 },
@@ -255,10 +358,10 @@ const MODELS = [
     category: "hormones",
     name: "Menstruationszyklus-Modell",
     dynamic: "rhythm",
-    formula: "GnRH', LH', FSH', E', P' mit Feedback und circadianem Input",
-    description: "Gekoppeltes Hormonnetz fuer GnRH, LH, FSH, Oestrogen und Progesteron.",
+    formula: "GnRH', LH', FSH', E', P' with feedback + circadian input",
+    description: "Gekoppeltes Hormonnetz für GnRH, LH, FSH, Östrogen und Progesteron.",
     variables: ["GnRH", "LH", "FSH", "E", "P"],
-    observables: "LH-Surge, Oestrogen, Progesteron",
+    observables: "LH-Surge, Östrogen, Progesteron",
     params: { period: 28, feedback: 1.2 },
     preset: "cycleHormones",
   },
@@ -268,16 +371,16 @@ const MODELS = [
     name: "LH-Surge-Modell",
     dynamic: "feedback",
     formula: "E'=rE(1-E/K)-dE E; LH'=b+g sigma(E-Ec)-c LH",
-    description: "Positives Oestrogenfeedback erzeugt einen LH-Surge.",
+    description: "Positives Östrogenfeedback erzeugt einen LH-Surge.",
     variables: ["E", "LH", "P"],
-    observables: "Oestrogen, LH, Progesteron",
+    observables: "Östrogen, LH, Progesteron",
     params: { r: 0.2, k: 1.0, g: 2.5, ec: 0.58, c: 0.4 },
     preset: "lhSurge",
   },
   {
     id: 23,
     category: "hormones",
-    name: "Schilddruesenhormon-Modell",
+    name: "Schilddrüsenhormon-Modell",
     dynamic: "feedback",
     formula: "TSH'=a/(1+b(T3+T4))-c TSH; T4'=p TSH-m T4; T3'=m T4-d T3",
     description: "TSH, T4 und T3 als negatives Feedbacksystem.",
@@ -292,7 +395,7 @@ const MODELS = [
     name: "Blutzucker-Insulin-Modell",
     dynamic: "feedback",
     formula: "G'=meal(t)-u I G-bG; I'=s G/(Km+G)-c I",
-    description: "Glukoseaufnahme und Insulinausschuettung nach Mahlzeiten.",
+    description: "Glukoseaufnahme und Insulinausschüttung nach Mahlzeiten.",
     variables: ["Glucose", "Insulin"],
     observables: "Glukose, Insulin",
     params: { uptake: 0.018, secretion: 0.85, km: 90, clear: 0.28 },
@@ -364,7 +467,7 @@ const MODELS = [
     name: "Alkoholabbau",
     dynamic: "decay",
     formula: "dA/dt = intake(t) - Vmax A/(Km+A)",
-    description: "Saettigungsabhaengiger Alkoholabbau.",
+    description: "Sättigungsabhängiger Alkoholabbau.",
     variables: ["Alcohol"],
     observables: "Alkoholspiegel",
     params: { vmax: 0.18, km: 0.08, intake: 1.0 },
@@ -376,7 +479,7 @@ const MODELS = [
     name: "VO2max-Trainingseffekt",
     dynamic: "resource",
     formula: "Fitness'=a load-dF Fitness; Fatigue'=b load-dX Fatigue",
-    description: "Fitness steigt durch Reiz, Ermuendung steigt schneller und klingt ab.",
+    description: "Fitness steigt durch Reiz, Ermüdung steigt schneller und klingt ab.",
     variables: ["Fitness", "Fatigue"],
     observables: "Fitness, Fatigue, Performance",
     params: { adapt: 0.11, strain: 0.24, dF: 0.025, dX: 0.12 },
@@ -400,7 +503,7 @@ const MODELS = [
     name: "Muskelaufbau",
     dynamic: "growth",
     formula: "M'=s stimulus/(Km+stimulus)-d M",
-    description: "Trainingsreiz treibt Synthese, Abbau zieht Muskelmasse zurueck.",
+    description: "Trainingsreiz treibt Synthese, Abbau zieht Muskelmasse zurück.",
     variables: ["Muscle"],
     observables: "Muskelmasse",
     params: { synth: 0.16, km: 0.4, breakdown: 0.028 },
@@ -409,7 +512,7 @@ const MODELS = [
   {
     id: 34,
     category: "health",
-    name: "Koerpergewicht",
+    name: "Körpergewicht",
     dynamic: "resource",
     formula: "W'=(intake-expenditure-adapt)/E; adapt'=a(W0-W)-d adapt",
     description: "Kalorienbilanz plus metabolische Adaptation.",
@@ -424,7 +527,7 @@ const MODELS = [
     name: "LDL-Cholesterin-Senkung",
     dynamic: "decay",
     formula: "LDL'=production-clearance LDL-drug(t) LDL",
-    description: "Ernaehrung, Medikamente und natuerlicher Abbau senken LDL.",
+    description: "Ernährung, Medikamente und natürlicher Abbau senken LDL.",
     variables: ["LDL"],
     observables: "LDL-Cholesterin",
     params: { production: 2.2, clearance: 0.025, drug: 0.035 },
@@ -433,12 +536,12 @@ const MODELS = [
   {
     id: 36,
     category: "health",
-    name: "Entzuendungsmarker",
+    name: "Entzündungsmarker",
     dynamic: "shock",
     formula: "S'=insult(t)-dS S; I'=g S-c I",
     description: "Reiz, Immunantwort und Abklingen eines Markers.",
     variables: ["Stimulus", "Inflammation"],
-    observables: "Stimulus, Entzuendung",
+    observables: "Stimulus, Entzündung",
     params: { dS: 0.3, gain: 0.55, clear: 0.16 },
     preset: "inflammation",
   },
@@ -472,9 +575,9 @@ const MODELS = [
     name: "Verletzungsheilung",
     dynamic: "decay",
     formula: "Damage'=-r Repair Damage; Repair'=a Damage-c Repair",
-    description: "Gewebereparatur ueber Zeit.",
+    description: "Gewebereparatur über Zeit.",
     variables: ["Damage", "Repair"],
-    observables: "Schaden, Reparaturaktivitaet",
+    observables: "Schaden, Reparaturaktivität",
     params: { repair: 0.22, activation: 0.42, clear: 0.16 },
     preset: "healing",
   },
@@ -529,7 +632,7 @@ const MODELS = [
   {
     id: 44,
     category: "business",
-    name: "Viralitaetsmodell",
+    name: "Viralitätsmodell",
     dynamic: "growth",
     formula: "U'=organic+v U(1-U/K)-churn U",
     description: "Bestehende Nutzer bringen neue Nutzer.",
@@ -541,10 +644,10 @@ const MODELS = [
   {
     id: 45,
     category: "business",
-    name: "Marketplace-Liquiditaet",
+    name: "Marketplace-Liquidität",
     dynamic: "feedback",
     formula: "S'=s0+a M-dS S; D'=d0+b M-dD D; M'=m S D/(1+S+D)-c M",
-    description: "Angebot und Nachfrage koppeln sich ueber Matches.",
+    description: "Angebot und Nachfrage koppeln sich über Matches.",
     variables: ["Supply", "Demand", "Matches"],
     observables: "Supply, Demand, Matches",
     params: { s0: 0.03, d0: 0.04, m: 0.45, clear: 0.18 },
@@ -589,12 +692,12 @@ const MODELS = [
   {
     id: 49,
     category: "business",
-    name: "Produktivitaetsmodell im Team",
+    name: "Produktivitätsmodell im Team",
     dynamic: "feedback",
     formula: "Exp'=onboard(team-Exp)-attrition Exp; Overhead'=coord team^2-d O; Prod'=g Exp-h O-dP Prod",
     description: "Onboarding, Erfahrung und Kommunikations-Overhead.",
     variables: ["Experience", "Overhead", "Productivity"],
-    observables: "Erfahrung, Overhead, Produktivitaet",
+    observables: "Erfahrung, Overhead, Produktivität",
     params: { team: 0.65, onboard: 0.18, coord: 0.08, drag: 0.35 },
     preset: "teamProductivity",
   },
@@ -604,7 +707,7 @@ const MODELS = [
     name: "Feature-Debt-Modell",
     dynamic: "feedback",
     formula: "Value'=feature_rate-complexity Debt; Debt'=a feature_rate-refactor Debt",
-    description: "Entwicklung erhoeht Wert und Komplexitaet.",
+    description: "Entwicklung erhöht Wert und Komplexität.",
     variables: ["Value", "Debt"],
     observables: "Produktwert, Feature Debt",
     params: { feature: 0.14, complexity: 0.08, debt: 0.22, refactor: 0.06 },
@@ -625,12 +728,12 @@ const MODELS = [
   {
     id: 52,
     category: "ai",
-    name: "LLM-Queue-Modell",
+    name: "LLM-Warteschlangenmodell",
     dynamic: "resource",
     formula: "Q'=arrival-service(Q); W'=a(Q/mu-W)",
-    description: "Requests, Verarbeitung und Wartezeit.",
+    description: "Anfragen, Verarbeitung und Wartezeit.",
     variables: ["Queue", "Wait"],
-    observables: "Queue-Laenge, Wartezeit",
+    observables: "Warteschlangenlänge, Wartezeit",
     params: { arrival: 0.38, service: 0.32, km: 0.2, adapt: 0.5 },
     preset: "queue",
   },
@@ -664,7 +767,7 @@ const MODELS = [
     name: "Bug-Bestand",
     dynamic: "resource",
     formula: "Bugs'=injection_rate features-fix_rate Bugs",
-    description: "Neue Bugs minus geloeste Bugs.",
+    description: "Neue Bugs minus gelöste Bugs.",
     variables: ["Bugs"],
     observables: "Offene Bugs",
     params: { injection: 0.11, features: 0.9, fix: 0.07 },
@@ -676,7 +779,7 @@ const MODELS = [
     name: "Tech-Debt-Dynamik",
     dynamic: "feedback",
     formula: "Debt'=feature_debt-refactor Debt; Velocity'=a(base/(1+d Debt)-Velocity)",
-    description: "Neue Features erhoehen Debt, Refactoring senkt ihn.",
+    description: "Neue Features erhöhen Debt, Refactoring senkt ihn.",
     variables: ["Debt", "Velocity"],
     observables: "Tech Debt, Velocity",
     params: { featureDebt: 0.12, refactor: 0.045, base: 0.9, drag: 1.5, adapt: 0.4 },
@@ -688,21 +791,21 @@ const MODELS = [
     name: "Modell-Degradation",
     dynamic: "decay",
     formula: "Drift'=drift_rate-retrain Drift; Quality'=-d Drift Quality+gain retrain(1-Quality)",
-    description: "Daten-Drift senkt Modellqualitaet, Retraining stabilisiert.",
+    description: "Daten-Drift senkt Modellqualität, Retraining stabilisiert.",
     variables: ["Drift", "Quality"],
-    observables: "Drift, Qualitaet",
+    observables: "Drift, Qualität",
     params: { drift: 0.04, retrain: 0.02, degrade: 0.5, gain: 0.55 },
     preset: "modelDrift",
   },
   {
     id: 58,
     category: "ai",
-    name: "Retrieval-Qualitaet",
+    name: "Retrieval-Qualität",
     dynamic: "feedback",
     formula: "Knowledge'=add-decay Knowledge; Quality'=benefit Knowledge/(Km+Knowledge)-stale Quality",
-    description: "Wissensbasis waechst, Veralterung senkt Qualitaet.",
+    description: "Wissensbasis wächst, Veralterung senkt Qualität.",
     variables: ["Knowledge", "Quality"],
-    observables: "Wissensbasis, Retrieval-Qualitaet",
+    observables: "Wissensbasis, Retrieval-Qualität",
     params: { add: 0.12, decay: 0.018, benefit: 0.18, stale: 0.055 },
     preset: "retrieval",
   },
@@ -724,9 +827,9 @@ const MODELS = [
     name: "Empfehlungsalgorithmus-Feedback",
     dynamic: "feedback",
     formula: "Popularity'=base+f Exposure Popularity/(1+Popularity)-dP Popularity; Exposure'=r Popularity-dE Exposure",
-    description: "Popularitaet verstaerkt Popularitaet ueber Exposition.",
+    description: "Popularität verstärkt Popularität über Exposition.",
     variables: ["Popularity", "Exposure"],
-    observables: "Popularitaet, Exposition",
+    observables: "Popularität, Exposition",
     params: { base: 0.02, feedback: 0.45, dP: 0.08, rank: 0.24, dE: 0.18 },
     preset: "recommendation",
   },
@@ -736,7 +839,7 @@ const MODELS = [
     name: "Portfolio-Wachstum",
     dynamic: "growth",
     formula: "Capital'=return Capital+contribution(t)",
-    description: "Kapital waechst mit Rendite und Einzahlungen.",
+    description: "Kapital wächst mit Rendite und Einzahlungen.",
     variables: ["Capital"],
     observables: "Portfolio-Kapital",
     params: { return: 0.055, contribution: 0.025 },
@@ -769,12 +872,12 @@ const MODELS = [
   {
     id: 64,
     category: "finance",
-    name: "Volatilitaetsmodell",
+    name: "Volatilitätsmodell",
     dynamic: "shock",
     formula: "S'=shock(t)-d S; Vol'=a(base-Vol)+g S",
-    description: "Volatilitaet steigt bei Schocks und faellt langsam.",
+    description: "Volatilität steigt bei Schocks und fällt langsam.",
     variables: ["ShockMemory", "Volatility"],
-    observables: "Schockspeicher, Volatilitaet",
+    observables: "Schockspeicher, Volatilität",
     params: { decay: 0.18, revert: 0.08, base: 0.16, gain: 0.5 },
     preset: "volatility",
   },
@@ -829,7 +932,7 @@ const MODELS = [
   {
     id: 69,
     category: "finance",
-    name: "Token-Oekonomie",
+    name: "Token-Ökonomie",
     dynamic: "feedback",
     formula: "Supply'=mint-burn Demand; Demand'=adoption Demand(1-D/K)-decay Demand; Price'=s(Demand/Supply-Price)",
     description: "Angebot, Nachfrage, Burn und Preis.",
@@ -841,10 +944,10 @@ const MODELS = [
   {
     id: 70,
     category: "finance",
-    name: "Liquiditaetsrisiko",
+    name: "Liquiditätsrisiko",
     dynamic: "threshold",
     formula: "Cash'=inflow-outflow; Risk'=a(sigma((threshold-Cash)/w)-Risk)",
-    description: "Cashbestand und Abflussrate treiben Liquiditaetsrisiko.",
+    description: "Cashbestand und Abflussrate treiben Liquiditätsrisiko.",
     variables: ["Cash", "Risk"],
     observables: "Cash, Risiko",
     params: { inflow: 0.06, outflow: 0.085, threshold: 0.35, width: 0.08, adapt: 0.6 },
@@ -856,7 +959,7 @@ const MODELS = [
     name: "Raumtemperatur",
     dynamic: "decay",
     formula: "T'=-k(T-Ambient)",
-    description: "Newtonsches Abkuehlen.",
+    description: "Newtonsches Abkühlen.",
     variables: ["Temperature"],
     observables: "Raumtemperatur",
     params: { k: 0.08, ambient: 0.28 },
@@ -868,7 +971,7 @@ const MODELS = [
     name: "Akku-Entladung",
     dynamic: "resource",
     formula: "Battery'=charge(t)-load(t)",
-    description: "Verbrauch und Ladeleistung ueber Zeit.",
+    description: "Verbrauch und Ladeleistung über Zeit.",
     variables: ["Battery"],
     observables: "Akkustand",
     params: { load: 0.035, charge: 0.12 },
@@ -906,17 +1009,17 @@ const MODELS = [
     formula: "M'=-d(M-S); S'=d(M-S)-e S",
     description: "Feuchtigkeit diffundiert und verdunstet.",
     variables: ["CoreMoisture", "SurfaceMoisture"],
-    observables: "Kern- und Oberflaechenfeuchte",
+    observables: "Kern- und Oberflächenfeuchte",
     params: { diffusion: 0.16, evap: 0.08 },
     preset: "drying",
   },
   {
     id: 76,
     category: "physics",
-    name: "Waermeverlust im Boden",
+    name: "Wärmeverlust im Boden",
     dynamic: "decay",
     formula: "T'=conductance(Outside-T)/capacity",
-    description: "Isolation und Temperaturgradient bestimmen Waermeverlust.",
+    description: "Isolation und Temperaturgradient bestimmen Wärmeverlust.",
     variables: ["GroundTemp"],
     observables: "Bodentemperatur",
     params: { conductance: 0.055, outside: 0.18 },
@@ -928,7 +1031,7 @@ const MODELS = [
     name: "3D-Druck-Heizbett",
     dynamic: "feedback",
     formula: "I'=setpoint-T; T'=heater(kp e+ki I)-loss(T-Ambient)",
-    description: "PID-Regelung fuer Heizbett-Temperatur.",
+    description: "PID-Regelung für Heizbett-Temperatur.",
     variables: ["Temperature", "Integral"],
     observables: "Temperatur, Regler-Integral",
     params: { setpoint: 0.78, kp: 1.1, ki: 0.11, heater: 0.35, loss: 0.12 },
@@ -940,19 +1043,19 @@ const MODELS = [
     name: "Drohnenflugzeit",
     dynamic: "resource",
     formula: "Energy'=-power(t); Altitude'=climb(t)-sink Altitude",
-    description: "Energieverbrauch ueber Flugzeit.",
+    description: "Energieverbrauch über Flugzeit.",
     variables: ["Energy", "Altitude"],
-    observables: "Energie, Hoehe",
+    observables: "Energie, Höhe",
     params: { power: 0.04, climb: 0.035, sink: 0.06 },
     preset: "drone",
   },
   {
     id: 79,
     category: "physics",
-    name: "Kamera-Akku bei Kaelte",
+    name: "Kamera-Akku bei Kälte",
     dynamic: "resource",
     formula: "Battery'=-draw(1+cold_gain max(0,20-Temp)/20)",
-    description: "Temperaturabhaengiger Verbrauch.",
+    description: "Temperaturabhängiger Verbrauch.",
     variables: ["Battery", "Temperature"],
     observables: "Akkustand, Temperatur",
     params: { draw: 0.032, coldGain: 0.9, ambient: 0.08, relax: 0.05 },
@@ -961,10 +1064,10 @@ const MODELS = [
   {
     id: 80,
     category: "physics",
-    name: "Gebaeudeheizung",
+    name: "Gebäudeheizung",
     dynamic: "feedback",
     formula: "Indoor'=heat/cap+e(Wall-Indoor)-loss(Indoor-Outdoor); Wall'=e(Indoor-Wall)-g(Wall-Outdoor)",
-    description: "Waermekapazitaet, Verlust und Heizinput.",
+    description: "Wärmekapazität, Verlust und Heizinput.",
     variables: ["Indoor", "Wall"],
     observables: "Innen- und Wandtemperatur",
     params: { heat: 0.09, exchange: 0.1, loss: 0.055, outdoor: 0.2 },
@@ -973,12 +1076,12 @@ const MODELS = [
   {
     id: 81,
     category: "society",
-    name: "Raeuber-Beute-Modell",
+    name: "Räuber-Beute-Modell",
     dynamic: "feedback",
     formula: "Prey'=a Prey-b Prey Predator; Predator'=c Prey Predator-d Predator",
     description: "Lotka-Volterra Dynamik.",
     variables: ["Prey", "Predator"],
-    observables: "Beute, Raeuber",
+    observables: "Beute, Räuber",
     params: { a: 0.55, b: 0.35, c: 0.26, d: 0.38 },
     preset: "lotka",
   },
@@ -997,7 +1100,7 @@ const MODELS = [
   {
     id: 83,
     category: "society",
-    name: "Geruechte-Verbreitung",
+    name: "Gerüchte-Verbreitung",
     dynamic: "compartment",
     formula: "U'=-beta U S; Spreaders'=beta U S-gamma Spreaders; Forgotten'=gamma Spreaders",
     description: "Menschen erfahren und vergessen Information.",
@@ -1009,10 +1112,10 @@ const MODELS = [
   {
     id: 84,
     category: "society",
-    name: "Staedtewachstum",
+    name: "Städtewachstum",
     dynamic: "growth",
     formula: "Pop'=r Pop(1-Pop/(K0+a Infra)); Infra'=invest Pop-d Infra",
-    description: "Bevoelkerung und Infrastruktur wachsen gekoppelt.",
+    description: "Bevölkerung und Infrastruktur wachsen gekoppelt.",
     variables: ["Population", "Infrastructure"],
     observables: "Population, Infrastruktur",
     params: { r: 0.08, k0: 0.6, alpha: 0.9, invest: 0.05, decay: 0.03 },
@@ -1024,7 +1127,7 @@ const MODELS = [
     name: "Verkehrsstau",
     dynamic: "resource",
     formula: "Cars'=inflow-capacity tanh(Cars/capacity); Delay'=a(Cars/capacity-Delay)",
-    description: "Zufluss, Kapazitaet und Abfluss.",
+    description: "Zufluss, Kapazität und Abfluss.",
     variables: ["Cars", "Delay"],
     observables: "Autos, Verzugszeit",
     params: { inflow: 0.33, capacity: 0.28, adapt: 0.45 },
@@ -1060,7 +1163,7 @@ const MODELS = [
     name: "Waldbrand-Ausbreitung",
     dynamic: "shock",
     formula: "Fuel'=-s Fuel Fire; Fire'=s Fuel Fire-e Fire; Burned'=b Fire",
-    description: "Brennbares Material, Feuer und verbrannte Flaeche.",
+    description: "Brennbares Material, Feuer und verbrannte Fläche.",
     variables: ["Fuel", "Fire", "Burned"],
     observables: "Fuel, Fire, Burned",
     params: { spread: 0.7, extinguish: 0.22, burn: 0.18 },
@@ -1069,12 +1172,12 @@ const MODELS = [
   {
     id: 89,
     category: "society",
-    name: "See-Algenbluete",
+    name: "See-Algenblüte",
     dynamic: "feedback",
     formula: "N'=input-u N A+r A-dN N; A'=g N A/(Km+N)-death A; O'=reaeration(sat-O)-resp A+photo A",
-    description: "Naehrstoffe, Algen und Sauerstoff.",
+    description: "Nährstoffe, Algen und Sauerstoff.",
     variables: ["Nutrients", "Algae", "Oxygen"],
-    observables: "Naehrstoffe, Algen, Sauerstoff",
+    observables: "Nährstoffe, Algen, Sauerstoff",
     params: { input: 0.08, uptake: 0.45, growth: 0.42, death: 0.12, reaeration: 0.08 },
     preset: "algae",
   },
@@ -1093,19 +1196,145 @@ const MODELS = [
 ];
 
 const PRIORITY = [
-  ["Altersabhaengiges Ovarialreserve-Modell", "Einfach, erklaerbar, starke Basislinie fuer Patientinnenpfade."],
-  ["Kompartimentmodell Reserve -> antral -> ovulatorisch", "Biologisch realistischer und anschlussfaehig an Ultraschall/AFC."],
+  ["Altersabhängiges Ovarialreserve-Modell", "Einfach, erklärbar, starke Basislinie für Patientinnenpfade."],
+  ["Kompartimentmodell Reserve -> antral -> ovulatorisch", "Biologisch realistischer und anschlussfähig an Ultraschall/AFC."],
   ["AMH/AFC-Beobachtungsmodell", "Verbindet latente Follikelpopulationen mit realen Messdaten."],
-  ["Bayesian Personalisation", "Macht individuelle Prognose statt Durchschnittskurve moeglich."],
+  ["Bayesian Personalisation", "Macht individuelle Prognose statt Durchschnittskurve möglich."],
   ["IVF-Response-Modell", "Direkter klinischer Output: erwartete Antwort pro Stimulationszyklus."],
 ];
+
+const PRIORITY_EN = [
+  ["Age-dependent ovarian reserve model", "Simple, explainable, and a strong baseline for patient pathways."],
+  ["Compartment model: reserve -> antral -> ovulatory", "More biologically realistic and easy to connect to ultrasound or AFC."],
+  ["AMH/AFC observation model", "Links latent follicle populations to real measurements."],
+  ["Bayesian personalisation", "Enables individual forecasts instead of an average curve."],
+  ["IVF response model", "Produces a clinically meaningful output: expected response per stimulation cycle."],
+];
+
+const MODEL_EN = {
+  1: ["Simple oocyte reserve decline", "Baseline reserve loss with a constant rate.", "Reserve R, remaining share"],
+  2: ["Age-accelerated reserve decline", "Reserve loss accelerates as age increases.", "Reserve R, accelerated decline"],
+  3: ["Two-phase decline before and after 35", "Piecewise dynamics for slower and faster reserve loss.", "Reserve R, breakpoint at t=35"],
+  4: ["Primordial -> primary -> antral follicles", "Compartment flow from early follicles to antral follicles.", "Primordial P, primary Q, antral A"],
+  5: ["AMH feedback on follicle activation", "AMH slows activation and is produced by antral follicles.", "AMH, antral follicles, reserve"],
+  6: ["AFC forecast from follicle population", "AFC is modeled as a smoothed observation of the antral population.", "Antral follicles A, AFC"],
+  7: ["IVF stimulation response", "FSH input recruits antral follicles and produces expected oocytes.", "Reserve, antral response, expected oocytes"],
+  8: ["Ovarian reserve after chemotherapy", "Acute additional loss during chemotherapy.", "Reserve before and after therapy impulse"],
+  9: ["Radiotherapy damage model", "Dose-dependent kill term for reserve loss.", "Reserve, cumulative dose effect"],
+  10: ["Endometriosis surgery effect", "Surgery event represented as a narrow loss impulse.", "Reserve with surgery drop"],
+  11: ["PCOS model", "High antral follicle count and altered hormonal maturation.", "Antral follicles, androgen or hormone index"],
+  12: ["Menopause threshold model", "Menopause signal rises when reserve falls below a threshold.", "Reserve R, threshold probability M"],
+  13: ["AMH trajectory over years", "AMH as a dynamic observation of antral follicles.", "AMH, antral population"],
+  14: ["Cycle length as a consequence of reserve", "Cycle length adapts slowly to reserve and follicle dynamics.", "Reserve, cycle length"],
+  15: ["Oocyte freezing planning", "Expected oocyte count per stimulation window.", "Reserve, expected cumulative oocytes"],
+  16: ["Poor responder risk", "Risk follows a smoothed AFC threshold.", "AFC, poor-responder risk"],
+  17: ["Family menopause age as prior", "The individual decline parameter is pulled toward a family prior.", "Reserve, personal decline parameter"],
+  18: ["Ovarian volume as proxy", "Ovarian volume follows reserve as a slow proxy.", "Reserve, volume proxy"],
+  19: ["FSH rise at low reserve", "Inhibin falls with reserve, which lets FSH rise.", "Reserve, inhibin, FSH"],
+  20: ["Multi-cycle IVF simulation", "Reserve declines across stimulation cycles while response varies.", "Reserve, cycle response"],
+  21: ["Menstrual cycle model", "Coupled hormone network for GnRH, LH, FSH, estrogen, and progesterone.", "LH surge, estrogen, progesterone"],
+  22: ["LH surge model", "Positive estrogen feedback generates an LH surge.", "Estrogen, LH, progesterone"],
+  23: ["Thyroid hormone model", "TSH, T4, and T3 as a negative feedback system.", "TSH, T3, T4"],
+  24: ["Blood glucose and insulin model", "Glucose uptake and insulin secretion after meals.", "Glucose, insulin"],
+  25: ["Daily cortisol rhythm", "Circadian cortisol trajectory with optional stress impulse.", "Cortisol level"],
+  26: ["Testosterone regulation", "LH-testosterone axis with negative feedback.", "LH, testosterone"],
+  27: ["Medication level in blood", "Absorption, distribution, and elimination as PK compartments.", "Blood level, tissue level"],
+  28: ["Ritalin effect level", "Intake, peak, half-life, and effect compartment.", "Blood level, effect"],
+  29: ["Caffeine elimination", "Exponential elimination with half-life.", "Caffeine level"],
+  30: ["Alcohol elimination", "Saturation-dependent alcohol elimination.", "Alcohol level"],
+  31: ["VO2max training effect", "Fitness rises through stimulus, fatigue rises faster and decays.", "Fitness, fatigue, performance"],
+  32: ["Hyrox performance model", "Energy, lactate, and recovery under coupled load.", "Energy, lactate, recovery"],
+  33: ["Muscle growth", "Training stimulus drives synthesis while breakdown pulls mass back.", "Muscle mass"],
+  34: ["Body weight", "Calorie balance plus metabolic adaptation.", "Weight, adaptation"],
+  35: ["LDL cholesterol reduction", "Nutrition, medication, and natural clearance lower LDL.", "LDL cholesterol"],
+  36: ["Inflammation marker", "Stimulus, immune response, and marker decay.", "Stimulus, inflammation"],
+  37: ["Sleep pressure", "Build-up during the day and decay at night.", "Sleep pressure"],
+  38: ["Stress and recovery", "Load and regeneration as opposing processes.", "Stress, recovery"],
+  39: ["Injury healing", "Tissue repair over time.", "Damage, repair activity"],
+  40: ["Endurance adaptation", "Mitochondrial adaptation under endurance training.", "Mitochondrial index, fatigue"],
+  41: ["User growth", "Logistic growth with market limit.", "User count"],
+  42: ["Churn model", "Users leave the product at churn rate c.", "Active users"],
+  43: ["SaaS MRR", "New customers, churn, and recurring revenue.", "Customers, MRR"],
+  44: ["Virality model", "Existing users bring in new users.", "Users, viral contribution"],
+  45: ["Marketplace liquidity", "Supply and demand are coupled through matches.", "Supply, demand, matches"],
+  46: ["Waitlist growth", "Organic, paid, and referral growth.", "Waitlist"],
+  47: ["Cash runway", "Cash falls through burn and rises through revenue.", "Cash, revenue, runway"],
+  48: ["Sales pipeline", "Leads move through pipeline stages.", "Leads, qualified, closed"],
+  49: ["Team productivity model", "Onboarding, experience, and communication overhead.", "Experience, overhead, productivity"],
+  50: ["Feature debt model", "Development increases value and complexity.", "Product value, feature debt"],
+  51: ["API cost growth", "Users, tokens, and cost grow together.", "Users, tokens, cumulative cost"],
+  52: ["LLM queue model", "Requests, processing, and waiting time.", "Queue length, waiting time"],
+  53: ["GPU utilization", "Jobs arrive and are processed.", "Waiting jobs, running jobs, utilization"],
+  54: ["Database load", "Reads, writes, and cache hit rate.", "DB load, cache"],
+  55: ["Bug stock", "New bugs minus fixed bugs.", "Open bugs"],
+  56: ["Tech debt dynamics", "New features increase debt, refactoring lowers it.", "Tech debt, velocity"],
+  57: ["Model degradation", "Data drift lowers model quality while retraining stabilizes it.", "Drift, quality"],
+  58: ["Retrieval quality", "The knowledge base grows while staleness lowers quality.", "Knowledge base, retrieval quality"],
+  59: ["App retention", "Cohort decay with reactivation.", "Active cohort"],
+  60: ["Recommendation feedback", "Popularity reinforces popularity through exposure.", "Popularity, exposure"],
+  61: ["Portfolio growth", "Capital grows through returns and contributions.", "Portfolio capital"],
+  62: ["Compound interest with cash flows", "Savings plan as an ODE.", "Balance"],
+  63: ["Crash recovery", "Drawdown and mean reversion after a crash.", "Price, drawdown"],
+  64: ["Volatility model", "Volatility rises during shocks and falls slowly.", "Shock memory, volatility"],
+  65: ["Gold/S&P allocation", "Rebalancing between gold and equities.", "Gold share, S&P share"],
+  66: ["Inflation and purchasing power", "Purchasing power falls with inflation.", "Price level, purchasing power"],
+  67: ["Mortgage debt", "Amortization and interest determine remaining debt.", "Remaining debt"],
+  68: ["Startup valuation", "Revenue growth and multiple compression.", "Revenue, multiple, valuation"],
+  69: ["Token economy", "Supply, demand, burn, and price.", "Supply, demand, price"],
+  70: ["Liquidity risk", "Cash stock and outflow drive liquidity risk.", "Cash, risk"],
+  71: ["Room temperature", "Newtonian cooling.", "Room temperature"],
+  72: ["Battery discharge", "Consumption and charging power over time.", "Battery level"],
+  73: ["E-scooter range", "Speed, weight, and slope determine range.", "Battery level, distance"],
+  74: ["Water level in a tank", "Inflow minus outflow.", "Water level"],
+  75: ["Concrete drying", "Moisture diffuses and evaporates.", "Core and surface moisture"],
+  76: ["Heat loss in the ground", "Insulation and temperature gradient determine heat loss.", "Ground temperature"],
+  77: ["3D printer heated bed", "PID control for heated-bed temperature.", "Temperature, controller integral"],
+  78: ["Drone flight time", "Energy use over flight time.", "Energy, altitude"],
+  79: ["Camera battery in cold weather", "Temperature-dependent consumption.", "Battery level, temperature"],
+  80: ["Building heating", "Heat capacity, loss, and heating input.", "Indoor and wall temperature"],
+  81: ["Predator-prey model", "Lotka-Volterra dynamics.", "Prey, predator"],
+  82: ["Epidemic model", "SIR: susceptible, infected, recovered.", "Susceptible, infected, recovered"],
+  83: ["Rumor spreading", "People learn and forget information.", "Unaware, spreaders, forgotten"],
+  84: ["City growth", "Population and infrastructure grow together.", "Population, infrastructure"],
+  85: ["Traffic jam", "Inflow, capacity, and outflow.", "Cars, delay time"],
+  86: ["CO2 concentration", "Emissions minus uptake.", "CO2 concentration"],
+  87: ["Recycling system", "Material-flow compartments.", "Raw material, use, waste, recycling"],
+  88: ["Wildfire spread", "Fuel, fire, and burned area.", "Fuel, fire, burned"],
+  89: ["Lake algae bloom", "Nutrients, algae, and oxygen.", "Nutrients, algae, oxygen"],
+  90: ["Urban water consumption", "Demand, storage, and inflow.", "Water storage, demand"],
+};
 
 const qs = (selector) => document.querySelector(selector);
 const categoryById = new Map(CATEGORIES.map((category) => [category.id, category]));
 let selectedModel = MODELS[4];
+let currentLang = "de";
 let isPlaying = true;
 let animationTime = 0;
 let chartFrame = null;
+
+function t(key) {
+  return I18N[currentLang][key] ?? I18N.de[key] ?? key;
+}
+
+function categoryLabel(category) {
+  return category?.label?.[currentLang] ?? category?.label?.de ?? "";
+}
+
+function dynamicLabel(kind) {
+  return I18N[currentLang].dynamics[kind] ?? I18N.de.dynamics[kind] ?? kind;
+}
+
+function modelName(model) {
+  return currentLang === "en" ? MODEL_EN[model.id]?.[0] ?? model.name : model.name;
+}
+
+function modelDescription(model) {
+  return currentLang === "en" ? MODEL_EN[model.id]?.[1] ?? model.description : model.description;
+}
+
+function modelObservables(model) {
+  return currentLang === "en" ? MODEL_EN[model.id]?.[2] ?? model.observables : model.observables;
+}
 
 function sigmoid(x) {
   return 1 / (1 + Math.exp(-x));
@@ -1542,15 +1771,22 @@ function drawChart(canvas, model, points, progress = 1) {
 function renderCategories() {
   const select = qs("#category-select");
   const rail = qs("#category-rail");
+  const selected = select.value || "all";
+  select.innerHTML = "";
+  rail.innerHTML = "";
+  const allOption = document.createElement("option");
+  allOption.value = "all";
+  allOption.textContent = t("allCategories");
+  select.append(allOption);
   CATEGORIES.forEach((category) => {
     const option = document.createElement("option");
     option.value = category.id;
-    option.textContent = category.label;
+    option.textContent = categoryLabel(category);
     select.append(option);
 
     const button = document.createElement("button");
     button.type = "button";
-    button.textContent = category.label;
+    button.textContent = categoryLabel(category);
     button.style.setProperty("--accent", category.accent);
     button.addEventListener("click", () => {
       select.value = category.id;
@@ -1559,6 +1795,7 @@ function renderCategories() {
     });
     rail.append(button);
   });
+  select.value = [...select.options].some((option) => option.value === selected) ? selected : "all";
 }
 
 function renderModels(models) {
@@ -1573,14 +1810,14 @@ function renderModels(models) {
     card.innerHTML = `
       <div class="card-topline">
         <span class="model-number">${String(model.id).padStart(2, "0")}</span>
-        <span class="dynamic-pill">${model.dynamic}</span>
+        <span class="dynamic-pill">${dynamicLabel(model.dynamic)}</span>
       </div>
-      <h3>${model.name}</h3>
-      <p>${model.description}</p>
+      <h3>${modelName(model)}</h3>
+      <p>${modelDescription(model)}</p>
       <code>${model.formula}</code>
       <footer>
-        <span>${category?.label ?? model.category}</span>
-        <button type="button" aria-label="${model.name} simulieren">Graph</button>
+        <span>${categoryLabel(category) || model.category}</span>
+        <button type="button" aria-label="${modelName(model)} ${t("graphAria")}">${t("cardGraph")}</button>
       </footer>
     `;
     card.querySelector("button").addEventListener("click", (event) => {
@@ -1598,7 +1835,8 @@ function filterModels() {
   const category = qs("#category-select").value;
   const dynamic = qs("#dynamic-select").value;
   const result = MODELS.filter((model) => {
-    const haystack = `${model.name} ${model.description} ${model.formula} ${model.observables}`.toLowerCase();
+    const english = MODEL_EN[model.id]?.join(" ") ?? "";
+    const haystack = `${model.name} ${model.description} ${model.formula} ${model.observables} ${english}`.toLowerCase();
     return (category === "all" || model.category === category) && (dynamic === "all" || model.dynamic === dynamic) && (!search || haystack.includes(search));
   });
   renderModels(result);
@@ -1608,13 +1846,13 @@ function filterModels() {
 function selectModel(model) {
   selectedModel = model;
   const category = categoryById.get(model.category);
-  qs("#selected-category").textContent = category?.label ?? model.category;
-  qs("#selected-title").textContent = `${String(model.id).padStart(2, "0")} ${model.name}`;
-  qs("#selected-description").textContent = model.description;
+  qs("#selected-category").textContent = categoryLabel(category) || model.category;
+  qs("#selected-title").textContent = `${String(model.id).padStart(2, "0")} ${modelName(model)}`;
+  qs("#selected-description").textContent = modelDescription(model);
   qs("#selected-formula").textContent = model.formula;
-  qs("#selected-observables").textContent = model.observables;
+  qs("#selected-observables").textContent = modelObservables(model);
   qs("#selected-parameters").textContent = Object.keys(model.params).join(", ");
-  qs("#chart-title").textContent = model.name;
+  qs("#chart-title").textContent = modelName(model);
   renderControls(model);
   drawMainChart(true);
 }
@@ -1673,18 +1911,41 @@ function animateCharts() {
   if (isPlaying) animationTime = (animationTime + 1.4) % 150;
   drawMainChart(false);
   const heroModel = MODELS[(Math.floor(Date.now() / 5000) % MODELS.length)];
-  qs("#hero-model-name").textContent = heroModel.name;
+  qs("#hero-model-name").textContent = modelName(heroModel);
   drawChart(qs("#hero-chart"), heroModel, simulate(heroModel, {}, 190, 0.28), 0.25 + 0.75 * ((Date.now() / 5000) % 1));
   chartFrame = requestAnimationFrame(animateCharts);
 }
 
 function renderPriority() {
   const grid = qs("#priority-grid");
-  PRIORITY.forEach(([title, reason], index) => {
+  grid.innerHTML = "";
+  const items = currentLang === "en" ? PRIORITY_EN : PRIORITY;
+  items.forEach(([title, reason], index) => {
     const card = document.createElement("article");
     card.innerHTML = `<span>${index + 1}</span><h3>${title}</h3><p>${reason}</p>`;
     grid.append(card);
   });
+}
+
+function applyLanguage(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach((node) => {
+    node.textContent = t(node.dataset.i18n);
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
+    node.setAttribute("placeholder", t(node.dataset.i18nPlaceholder));
+  });
+  document.querySelectorAll("[data-dynamic-label]").forEach((option) => {
+    option.textContent = dynamicLabel(option.dataset.dynamicLabel);
+  });
+  document.querySelectorAll("[data-lang]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.lang === lang);
+  });
+  renderCategories();
+  filterModels();
+  renderPriority();
+  selectModel(selectedModel);
 }
 
 function startBackground() {
@@ -1723,13 +1984,13 @@ function startBackground() {
 }
 
 function init() {
-  renderCategories();
-  renderPriority();
-  renderModels(MODELS);
-  selectModel(selectedModel);
   qs("#search-input").addEventListener("input", filterModels);
   qs("#category-select").addEventListener("change", filterModels);
   qs("#dynamic-select").addEventListener("change", filterModels);
+  document.querySelectorAll("[data-lang]").forEach((button) => {
+    button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+  });
+  applyLanguage(currentLang);
   qs("#play-button").addEventListener("click", () => {
     isPlaying = !isPlaying;
     qs("#play-button span").textContent = isPlaying ? "||" : ">";

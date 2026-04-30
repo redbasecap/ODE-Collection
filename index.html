@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Interactive ODE Library with 90 model ideas, simulations, animated graphs, and GitHub Pages deployment."
+      content="Bilingual ODE Library with 90 model ideas, simulations, animated graphs, and formulas."
     />
     <title>ODE World Library</title>
     <link rel="stylesheet" href="styles.css" />
@@ -22,43 +22,46 @@
           <span class="brand-mark">d/dt</span>
           <span>
             <strong>ODE World Library</strong>
-            <small>90 dynamische Modelle</small>
+            <small data-i18n="brandSub">90 dynamische Modelle</small>
           </span>
         </a>
         <div class="topbar-actions">
-          <a href="#library">Library</a>
-          <a href="#simulator">Simulator</a>
-          <a href="#github-pages">GitHub Pages</a>
+          <a href="#library" data-i18n="navLibrary">Bibliothek</a>
+          <a href="#simulator" data-i18n="navSimulator">Simulator</a>
+          <div class="language-switch" aria-label="Language">
+            <button type="button" class="active" data-lang="de">DE</button>
+            <button type="button" data-lang="en">EN</button>
+          </div>
         </div>
       </nav>
 
       <section class="hero" id="top">
         <div class="hero-copy">
-          <p class="eyebrow">Differentialgleichungen als lebendige Sammlung</p>
-          <h1>Die ODE-Bibliothek fuer Reproduktion, Hormone, Business, KI, Physik und Gesellschaft.</h1>
-          <p class="hero-lead">
-            Eine GitHub-Pages-faehige Web-App mit 90 Modellideen, animierten Trajektorien,
-            sofort simulierbaren Graphen und einer Struktur, die spaeter echte Daten aufnehmen kann.
+          <p class="eyebrow" data-i18n="heroEyebrow">Differentialgleichungen als lebendige Sammlung</p>
+          <h1 data-i18n="heroTitle">Die ODE-Bibliothek für Reproduktion, Hormone, Business, KI, Physik und Gesellschaft.</h1>
+          <p class="hero-lead" data-i18n="heroLead">
+            Eine zweisprachige Web-App mit 90 Modellideen, animierten Trajektorien,
+            sofort simulierbaren Graphen und einer Struktur, die später echte Daten aufnehmen kann.
           </p>
           <div class="hero-actions">
             <a class="primary-action" href="#simulator">
               <span aria-hidden="true">Run</span>
-              Simulator starten
+              <b data-i18n="heroPrimary">Simulator starten</b>
             </a>
-            <a class="secondary-action" href="#library">Alle Modelle ansehen</a>
+            <a class="secondary-action" href="#library" data-i18n="heroSecondary">Alle Modelle ansehen</a>
           </div>
         </div>
 
         <div class="hero-instrument" aria-label="Live ODE Instrument">
           <div class="instrument-header">
-            <span>Live system</span>
+            <span data-i18n="liveSystem">Live-System</span>
             <strong id="hero-model-name">Ovarielle Reserve</strong>
           </div>
           <canvas id="hero-chart" width="760" height="420" aria-label="Animierter Graph"></canvas>
           <div class="instrument-footer">
-            <span>RK4 engine</span>
-            <span>Canvas graphs</span>
-            <span>Static deploy</span>
+            <span data-i18n="instrumentA">RK4-Engine</span>
+            <span data-i18n="instrumentB">Canvas-Graphen</span>
+            <span data-i18n="instrumentC">DE/EN Atlas</span>
           </div>
         </div>
       </section>
@@ -68,27 +71,27 @@
       <section class="stats-band" aria-label="Projektstatistiken">
         <article>
           <span class="stat-number" id="stat-models">90</span>
-          <span class="stat-label">ODE-Ideen</span>
+          <span class="stat-label" data-i18n="statModels">ODE-Ideen</span>
         </article>
         <article>
           <span class="stat-number">8</span>
-          <span class="stat-label">Domaenen</span>
+          <span class="stat-label" data-i18n="statDomains">Domänen</span>
         </article>
         <article>
-          <span class="stat-number">0</span>
-          <span class="stat-label">Runtime Dependencies</span>
+          <span class="stat-number">2</span>
+          <span class="stat-label" data-i18n="statLang">Sprachen</span>
         </article>
         <article>
           <span class="stat-number">1</span>
-          <span class="stat-label">GitHub Pages App</span>
+          <span class="stat-label" data-i18n="statAtlas">ODE-Atlas</span>
         </article>
       </section>
 
       <section class="section-shell" id="library">
         <div class="section-heading">
-          <p class="eyebrow">Library</p>
-          <h2>90 Modelle, sortierbar nach Domaene und Dynamik.</h2>
-          <p>
+          <p class="eyebrow" data-i18n="libraryEyebrow">Bibliothek</p>
+          <h2 data-i18n="libraryTitle">90 Modelle, sortierbar nach Domäne und Dynamik.</h2>
+          <p data-i18n="libraryLead">
             Suche nach Begriffen wie AMH, Churn, SIR, GPU, Akku oder Cash. Jeder Eintrag
             besitzt eine ODE-Kernidee, eine Formel und eine Startsimulation.
           </p>
@@ -96,28 +99,28 @@
 
         <div class="control-strip" role="search">
           <label class="search-field">
-            <span>Suche</span>
-            <input id="search-input" type="search" placeholder="z.B. AMH, SaaS, SIR, Koffein" autocomplete="off" />
+            <span data-i18n="searchLabel">Suche</span>
+            <input id="search-input" type="search" placeholder="z.B. AMH, SaaS, SIR, Koffein" autocomplete="off" data-i18n-placeholder="searchPlaceholder" />
           </label>
           <label class="select-field">
-            <span>Kategorie</span>
+            <span data-i18n="categoryLabel">Kategorie</span>
             <select id="category-select">
-              <option value="all">Alle Kategorien</option>
+              <option value="all" data-i18n="allCategories">Alle Kategorien</option>
             </select>
           </label>
           <label class="select-field">
-            <span>Dynamik</span>
+            <span data-i18n="dynamicLabel">Dynamik</span>
             <select id="dynamic-select">
-              <option value="all">Alle Dynamiken</option>
-              <option value="decay">Abnahme</option>
-              <option value="growth">Wachstum</option>
-              <option value="feedback">Feedback</option>
-              <option value="compartment">Kompartiment</option>
-              <option value="observer">Beobachtung</option>
-              <option value="rhythm">Rhythmus</option>
-              <option value="shock">Schock</option>
-              <option value="threshold">Schwelle</option>
-              <option value="resource">Ressource</option>
+              <option value="all" data-dynamic-label="all">Alle Dynamiken</option>
+              <option value="decay" data-dynamic-label="decay">Abnahme</option>
+              <option value="growth" data-dynamic-label="growth">Wachstum</option>
+              <option value="feedback" data-dynamic-label="feedback">Feedback</option>
+              <option value="compartment" data-dynamic-label="compartment">Kompartiment</option>
+              <option value="observer" data-dynamic-label="observer">Beobachtung</option>
+              <option value="rhythm" data-dynamic-label="rhythm">Rhythmus</option>
+              <option value="shock" data-dynamic-label="shock">Schock</option>
+              <option value="threshold" data-dynamic-label="threshold">Schwelle</option>
+              <option value="resource" data-dynamic-label="resource">Ressource</option>
             </select>
           </label>
         </div>
@@ -128,26 +131,26 @@
 
       <section class="section-shell simulator-shell" id="simulator">
         <div class="section-heading compact">
-          <p class="eyebrow">Simulator</p>
-          <h2>Waehle ein Modell, veraendere Parameter, beobachte die Trajektorie.</h2>
+          <p class="eyebrow" data-i18n="simulatorEyebrow">Simulator</p>
+          <h2 data-i18n="simulatorTitle">Wähle ein Modell, verändere Parameter, beobachte die Trajektorie.</h2>
         </div>
 
         <div class="simulator-layout">
-          <aside class="model-panel" aria-label="Ausgewaehltes Modell">
+          <aside class="model-panel" aria-label="Ausgewähltes Modell">
             <div class="panel-kicker" id="selected-category">Kategorie</div>
             <h3 id="selected-title">Modell</h3>
             <p id="selected-description"></p>
             <dl class="model-meta">
               <div>
-                <dt>ODE-Kern</dt>
+                <dt data-i18n="odeCore">ODE-Kern</dt>
                 <dd id="selected-formula"></dd>
               </div>
               <div>
-                <dt>Messgroessen</dt>
+                <dt data-i18n="observables">Messgrößen</dt>
                 <dd id="selected-observables"></dd>
               </div>
               <div>
-                <dt>Parameter</dt>
+                <dt data-i18n="parameters">Parameter</dt>
                 <dd id="selected-parameters"></dd>
               </div>
             </dl>
@@ -157,14 +160,14 @@
           <div class="graph-lab">
             <div class="graph-toolbar">
               <div>
-                <span class="panel-kicker">Graph Lab</span>
+                <span class="panel-kicker" data-i18n="graphLab">Graph-Labor</span>
                 <h3 id="chart-title">Simulation</h3>
               </div>
               <div class="graph-actions">
                 <button type="button" id="play-button" class="icon-button" aria-label="Animation abspielen oder pausieren" title="Play/Pause">
                   <span aria-hidden="true">||</span>
                 </button>
-                <button type="button" id="reset-button" class="icon-button" aria-label="Simulation zuruecksetzen" title="Reset">
+                <button type="button" id="reset-button" class="icon-button" aria-label="Simulation zurücksetzen" title="Reset">
                   <span aria-hidden="true">R</span>
                 </button>
               </div>
@@ -177,47 +180,19 @@
 
       <section class="section-shell roadmap-shell">
         <div class="section-heading compact">
-          <p class="eyebrow">Top Projektpfad</p>
-          <h2>Die 5 staerksten Ovarialreserve-Modelle fuer ein echtes Datenprojekt.</h2>
+          <p class="eyebrow" data-i18n="roadmapEyebrow">Top-Projektpfad</p>
+          <h2 data-i18n="roadmapTitle">Die 5 stärksten Ovarialreserve-Modelle für ein echtes Datenprojekt.</h2>
         </div>
         <div class="priority-grid" id="priority-grid"></div>
-      </section>
-
-      <section class="section-shell github-shell" id="github-pages">
-        <div class="section-heading compact">
-          <p class="eyebrow">GitHub Pages</p>
-          <h2>Direkt deploybar: keine Build-Pipeline, keine Runtime-Abhaengigkeiten.</h2>
-          <p>
-            Lege die Dateien in ein GitHub-Repository, aktiviere Pages fuer den Branch oder nutze
-            den mitgelieferten Workflow. Die App laeuft als reine statische Website.
-          </p>
-        </div>
-        <div class="deploy-steps">
-          <article>
-            <span>01</span>
-            <strong>Repository pushen</strong>
-            <p>Root-Dateien inklusive <code>index.html</code>, <code>styles.css</code> und <code>script.js</code> committen.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <strong>Pages aktivieren</strong>
-            <p>GitHub Settings -> Pages -> Source: GitHub Actions oder Branch root auswaehlen.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <strong>ODE Library teilen</strong>
-            <p>Die generierte URL zeigt die komplette interaktive Sammlung mit Simulationen.</p>
-          </article>
-        </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>
+      <p data-i18n="footerDisclaimer">
         Educational ODE simulations only. Medizinische und finanzielle Modelle sind keine Diagnose,
         Therapie-, Investment- oder Entscheidungsberatung.
       </p>
-      <a href="#top">Zurueck nach oben</a>
+      <a href="#top" data-i18n="backTop">Zurück nach oben</a>
     </footer>
 
     <script src="script.js"></script>
