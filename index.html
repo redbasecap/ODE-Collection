@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Interactive ODE Library with 90 model ideas, simulations, animated graphs, and GitHub Pages deployment."
+    />
+    <title>ODE World Library</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-field" aria-hidden="true">
+      <canvas id="phase-canvas"></canvas>
+      <div class="grid-scrim"></div>
+    </div>
+
+    <header class="app-header">
+      <nav class="topbar" aria-label="Hauptnavigation">
+        <a class="brand" href="#top" aria-label="ODE World Library">
+          <span class="brand-mark">d/dt</span>
+          <span>
+            <strong>ODE World Library</strong>
+            <small>90 dynamische Modelle</small>
+          </span>
+        </a>
+        <div class="topbar-actions">
+          <a href="#library">Library</a>
+          <a href="#simulator">Simulator</a>
+          <a href="#github-pages">GitHub Pages</a>
+        </div>
+      </nav>
+
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">Differentialgleichungen als lebendige Sammlung</p>
+          <h1>Die ODE-Bibliothek fuer Reproduktion, Hormone, Business, KI, Physik und Gesellschaft.</h1>
+          <p class="hero-lead">
+            Eine GitHub-Pages-faehige Web-App mit 90 Modellideen, animierten Trajektorien,
+            sofort simulierbaren Graphen und einer Struktur, die spaeter echte Daten aufnehmen kann.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#simulator">
+              <span aria-hidden="true">Run</span>
+              Simulator starten
+            </a>
+            <a class="secondary-action" href="#library">Alle Modelle ansehen</a>
+          </div>
+        </div>
+
+        <div class="hero-instrument" aria-label="Live ODE Instrument">
+          <div class="instrument-header">
+            <span>Live system</span>
+            <strong id="hero-model-name">Ovarielle Reserve</strong>
+          </div>
+          <canvas id="hero-chart" width="760" height="420" aria-label="Animierter Graph"></canvas>
+          <div class="instrument-footer">
+            <span>RK4 engine</span>
+            <span>Canvas graphs</span>
+            <span>Static deploy</span>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="stats-band" aria-label="Projektstatistiken">
+        <article>
+          <span class="stat-number" id="stat-models">90</span>
+          <span class="stat-label">ODE-Ideen</span>
+        </article>
+        <article>
+          <span class="stat-number">8</span>
+          <span class="stat-label">Domaenen</span>
+        </article>
+        <article>
+          <span class="stat-number">0</span>
+          <span class="stat-label">Runtime Dependencies</span>
+        </article>
+        <article>
+          <span class="stat-number">1</span>
+          <span class="stat-label">GitHub Pages App</span>
+        </article>
+      </section>
+
+      <section class="section-shell" id="library">
+        <div class="section-heading">
+          <p class="eyebrow">Library</p>
+          <h2>90 Modelle, sortierbar nach Domaene und Dynamik.</h2>
+          <p>
+            Suche nach Begriffen wie AMH, Churn, SIR, GPU, Akku oder Cash. Jeder Eintrag
+            besitzt eine ODE-Kernidee, eine Formel und eine Startsimulation.
+          </p>
+        </div>
+
+        <div class="control-strip" role="search">
+          <label class="search-field">
+            <span>Suche</span>
+            <input id="search-input" type="search" placeholder="z.B. AMH, SaaS, SIR, Koffein" autocomplete="off" />
+          </label>
+          <label class="select-field">
+            <span>Kategorie</span>
+            <select id="category-select">
+              <option value="all">Alle Kategorien</option>
+            </select>
+          </label>
+          <label class="select-field">
+            <span>Dynamik</span>
+            <select id="dynamic-select">
+              <option value="all">Alle Dynamiken</option>
+              <option value="decay">Abnahme</option>
+              <option value="growth">Wachstum</option>
+              <option value="feedback">Feedback</option>
+              <option value="compartment">Kompartiment</option>
+              <option value="observer">Beobachtung</option>
+              <option value="rhythm">Rhythmus</option>
+              <option value="shock">Schock</option>
+              <option value="threshold">Schwelle</option>
+              <option value="resource">Ressource</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="category-rail" id="category-rail" aria-label="Kategorie-Schnellauswahl"></div>
+        <div class="model-grid" id="model-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="section-shell simulator-shell" id="simulator">
+        <div class="section-heading compact">
+          <p class="eyebrow">Simulator</p>
+          <h2>Waehle ein Modell, veraendere Parameter, beobachte die Trajektorie.</h2>
+        </div>
+
+        <div class="simulator-layout">
+          <aside class="model-panel" aria-label="Ausgewaehltes Modell">
+            <div class="panel-kicker" id="selected-category">Kategorie</div>
+            <h3 id="selected-title">Modell</h3>
+            <p id="selected-description"></p>
+            <dl class="model-meta">
+              <div>
+                <dt>ODE-Kern</dt>
+                <dd id="selected-formula"></dd>
+              </div>
+              <div>
+                <dt>Messgroessen</dt>
+                <dd id="selected-observables"></dd>
+              </div>
+              <div>
+                <dt>Parameter</dt>
+                <dd id="selected-parameters"></dd>
+              </div>
+            </dl>
+            <div class="slider-stack" id="parameter-controls"></div>
+          </aside>
+
+          <div class="graph-lab">
+            <div class="graph-toolbar">
+              <div>
+                <span class="panel-kicker">Graph Lab</span>
+                <h3 id="chart-title">Simulation</h3>
+              </div>
+              <div class="graph-actions">
+                <button type="button" id="play-button" class="icon-button" aria-label="Animation abspielen oder pausieren" title="Play/Pause">
+                  <span aria-hidden="true">||</span>
+                </button>
+                <button type="button" id="reset-button" class="icon-button" aria-label="Simulation zuruecksetzen" title="Reset">
+                  <span aria-hidden="true">R</span>
+                </button>
+              </div>
+            </div>
+            <canvas id="main-chart" width="1100" height="620" aria-label="Simulationsgraph"></canvas>
+            <div class="legend-row" id="legend-row"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell roadmap-shell">
+        <div class="section-heading compact">
+          <p class="eyebrow">Top Projektpfad</p>
+          <h2>Die 5 staerksten Ovarialreserve-Modelle fuer ein echtes Datenprojekt.</h2>
+        </div>
+        <div class="priority-grid" id="priority-grid"></div>
+      </section>
+
+      <section class="section-shell github-shell" id="github-pages">
+        <div class="section-heading compact">
+          <p class="eyebrow">GitHub Pages</p>
+          <h2>Direkt deploybar: keine Build-Pipeline, keine Runtime-Abhaengigkeiten.</h2>
+          <p>
+            Lege die Dateien in ein GitHub-Repository, aktiviere Pages fuer den Branch oder nutze
+            den mitgelieferten Workflow. Die App laeuft als reine statische Website.
+          </p>
+        </div>
+        <div class="deploy-steps">
+          <article>
+            <span>01</span>
+            <strong>Repository pushen</strong>
+            <p>Root-Dateien inklusive <code>index.html</code>, <code>styles.css</code> und <code>script.js</code> committen.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <strong>Pages aktivieren</strong>
+            <p>GitHub Settings -> Pages -> Source: GitHub Actions oder Branch root auswaehlen.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <strong>ODE Library teilen</strong>
+            <p>Die generierte URL zeigt die komplette interaktive Sammlung mit Simulationen.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Educational ODE simulations only. Medizinische und finanzielle Modelle sind keine Diagnose,
+        Therapie-, Investment- oder Entscheidungsberatung.
+      </p>
+      <a href="#top">Zurueck nach oben</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
