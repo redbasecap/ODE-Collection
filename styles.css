@@ -525,6 +525,25 @@ main,
   color: rgba(244, 240, 230, 0.76);
 }
 
+.evidence-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.evidence-tags span {
+  max-width: 100%;
+  border: 1px solid color-mix(in srgb, var(--accent), white 22%);
+  background: color-mix(in srgb, var(--accent), transparent 84%);
+  color: var(--ink);
+  padding: 4px 7px;
+  overflow-wrap: anywhere;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 .model-card code {
   display: block;
   min-height: 72px;

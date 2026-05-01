@@ -138,6 +138,36 @@ MODELS: dict[int, ModelSpec] = {
     88: _spec(88, "Waldbrand-Ausbreitung", "society", ("Fuel", "Fire", "Burned"), "Fuel'=-sFuelFire; Fire'=sFuelFire-eFire; Burned'=bFire", "wildfire", {"spread": 0.7, "extinguish": 0.22, "burn": 0.18}, (1.0, 0.02, 0.0)),
     89: _spec(89, "See-Algenblüte", "society", ("Nutrients", "Algae", "Oxygen"), "N'=input-uNA+rA-dN; A'=gNA/(Km+N)-deathA; O'=reaeration(sat-O)-respA+photoA", "algae", {"input": 0.08, "uptake": 0.45, "growth": 0.42, "death": 0.12, "reaeration": 0.08}, (0.5, 0.08, 0.9)),
     90: _spec(90, "Wasserverbrauch in Stadt", "society", ("Storage", "Demand"), "Storage'=inflow-Demand; Demand'=gDemand-conservation shortage Demand", "water_city", {"inflow": 0.11, "growth": 0.035, "conservation": 0.2, "threshold": 0.35}, (0.8, 0.16)),
+    91: _spec(91, "HPA-Achse und allostatische Last", "mental_medical", ("CRH", "ACTH", "Cortisol", "GR"), "CRH'=stress/(1+f C GR)-c1 CRH; ACTH'=a CRH/(1+C GR)-c2 ACTH; C'=b ACTH-c3 C; GR'=repair(1-GR)-damage C GR", "hpa_axis", {"stress": 0.16, "feedback": 1.4, "acth_drive": 0.65, "cort_drive": 0.55, "clear": 0.28, "gr_repair": 0.08, "gr_damage": 0.10}, (0.25, 0.22, 0.35, 0.70)),
+    92: _spec(92, "Zirkadiane Depression-Bistabilität", "mental_medical", ("MoodBurden", "CircadianDrive", "Cortisol"), "M'=aM-bM^3+sC-rD; D'=q(circadian-D)-uC; C'=base+amp circadian+stress-cC", "circadian_bistable_mood", {"mood_gain": 0.18, "nonlinear": 0.42, "drive_gain": 0.22, "stress_gain": 0.34, "entrain": 0.20, "cort_drag": 0.08, "base": 0.20, "amp": 0.18, "clear": 0.25}, (0.08, 0.20, 0.35)),
+    93: _spec(93, "Rumination-Stress-Depressionsschleife", "mental_medical", ("Stressors", "Rumination", "MoodBurden"), "S'=load+sens R-coping S; R'=trigger S+habit R(1-R)-disengage R; M'=aR+bS-rec M", "rumination_loop", {"load": 0.06, "sensitivity": 0.10, "coping": 0.18, "trigger": 0.22, "habit": 0.16, "disengage": 0.11, "rumination_gain": 0.32, "stress_gain": 0.18, "recovery": 0.20}, (0.20, 0.15, 0.20)),
+    94: _spec(94, "Stress-Reward-Mentalizing Depression", "mental_medical", ("Stress", "Reward", "Mentalizing", "MoodBurden"), "S'=load-resilience Z S; R'=gain/(1+hS)-dR; Z'=practice(1-Z)-stress ZS; M'=aS-bR-recM", "stress_reward_mentalizing", {"load": 0.10, "resilience": 0.35, "reward_gain": 0.24, "stress_suppression": 1.2, "reward_decay": 0.16, "practice": 0.08, "stress_damage": 0.12, "burden_gain": 0.28, "reward_buffer": 0.20, "recovery": 0.16}, (0.25, 0.45, 0.55, 0.25)),
+    95: _spec(95, "SSRI-Wirkverzögerung und Neuroplastizität", "mental_medical", ("Drug", "Serotonin", "Plasticity", "SymptomBurden"), "D'=dose-kaD; 5HT'=base+rel-clear 5HT/(1+iD); P'=adapt 5HT/(Km+5HT)-lossP; S'=stress-benefit P S-recS", "ssri_plasticity", {"dose": 0.45, "ka": 0.75, "base": 0.10, "release": 0.08, "clear": 0.40, "inhibition": 1.4, "adapt": 0.16, "km": 0.35, "loss": 0.045, "stress": 0.08, "benefit": 0.24, "recovery": 0.04}, (0.0, 0.35, 0.10, 0.80)),
+    96: _spec(96, "PTSD-Furchtextinktion", "mental_medical", ("Fear", "SafetyMemory", "Arousal"), "F'=recon A(1-F)-ext exposure Safety F; Safety'=learn exposure(1-Safety)-forget Safety; A'=cueF+stress-calm Safety A", "fear_extinction", {"exposure": 0.65, "reconsolidation": 0.18, "extinction": 0.45, "learning": 0.30, "forget": 0.035, "cue": 0.32, "stress": 0.04, "calm": 0.35}, (0.75, 0.18, 0.42)),
+    97: _spec(97, "Panik-CO2-Arousal-Schleife", "mental_medical", ("CO2", "Arousal", "Avoidance"), "CO2'=challenge-breath CO2; A'=sens CO2+anticip Avoid-calm A; Avoid'=learn A(1-Avoid)-exposure Avoid", "panic_loop", {"challenge": 0.08, "breathing": 0.18, "sensitivity": 0.55, "anticipation": 0.28, "calm": 0.34, "learning": 0.20, "exposure": 0.08}, (0.22, 0.18, 0.25)),
+    98: _spec(98, "Sucht: Reward-Learning und Craving", "mental_medical", ("Cue", "Craving", "Control"), "Cue'=cue(t)-dCue; Craving'=sens Cue(1+l(1-Control))-ext Control Craving; Control'=rec(1-Control)-stress Craving Control+treat(1-Control)", "addiction_learning", {"cue": 0.50, "cue_decay": 0.28, "sensitization": 0.42, "learning": 0.75, "extinction": 0.22, "recovery": 0.08, "stress": 0.20, "treatment": 0.05}, (0.12, 0.20, 0.55)),
+    99: _spec(99, "Bipolare Mood-Oszillation", "mental_medical", ("Mood", "Momentum", "SleepDebt"), "Mood'=Momentum; Momentum'=drive(bias-Mood)-d Momentum-nl Mood^3+sleep SleepDebt; SleepDebt'=mania max(Mood,0)-rec SleepDebt", "bipolar_oscillator", {"drive": 0.16, "bias": 0.0, "damping": 0.08, "nonlinear": 0.08, "sleep_gain": 0.20, "mania": 0.18, "recovery": 0.11}, (0.15, 0.05, 0.20)),
+    100: _spec(100, "Soziale Isolation als Attraktor", "mental_medical", ("Connection", "Threat", "Inflammation"), "C'=outreach(1-C)-withdraw Threat C; Threat'=stress+iso(1-C)-safety C Threat; Infl'=immune Threat-clear Infl", "social_isolation_attractor", {"outreach": 0.10, "withdrawal": 0.24, "stress": 0.04, "isolation": 0.22, "safety": 0.30, "immune": 0.20, "clear": 0.14}, (0.55, 0.25, 0.16)),
+    101: _spec(101, "Digitaler Relapse-Risiko-Beobachter", "mental_medical", ("Stress", "SleepDebt", "Biomarker", "Risk"), "Stress'=load-coping Stress; Sleep'=disrupt+s Stress-rec Sleep; Bio'=gain(Stress+Sleep)-clear Bio; Risk'=a(sigmoid((Bio-th)/w)-Risk)", "relapse_observer", {"load": 0.08, "coping": 0.16, "disruption": 0.04, "stress_sleep": 0.18, "sleep_recovery": 0.15, "gain": 0.34, "clear": 0.22, "threshold": 0.50, "width": 0.08, "adapt": 0.50}, (0.22, 0.18, 0.20, 0.08)),
+    102: _spec(102, "Expositionstherapie und Skill-Aufbau", "mental_medical", ("Distress", "Skill", "Avoidance"), "D'=trigger+relief Avoid-skill Skill D-hab exposure D; Skill'=learn exposure(1-Skill)-forget Skill; Avoid'=threat D(1-Avoid)-approach Skill Avoid", "exposure_learning", {"trigger": 0.06, "avoidance_relief": 0.12, "skill": 0.35, "habituation": 0.26, "learning": 0.22, "forget": 0.035, "threat": 0.28, "approach": 0.24}, (0.45, 0.12, 0.55)),
+    103: _spec(103, "Achtsamkeit: Aufmerksamkeitskontrolle", "mental_medical", ("Rumination", "Attention", "Arousal"), "R'=trigger+arousal A-decenter Attention R; Attention'=practice(1-Attention)-fatigue A Attention; A'=stress+rum R-calm Attention A", "mindfulness_control", {"trigger": 0.06, "arousal_gain": 0.22, "decenter": 0.38, "practice": 0.16, "fatigue": 0.14, "stress": 0.06, "rumination_gain": 0.24, "calm": 0.30}, (0.42, 0.25, 0.30)),
+    104: _spec(104, "HRV und autonome Balance", "mental_medical", ("Sympathetic", "Parasympathetic", "HRV"), "S'=stress-vagal P S-clear S; P'=rec(1-P)-cost S P+breath(t); HRV'=a(P/(1+S)-HRV)", "autonomic_balance", {"stress": 0.18, "vagal": 0.35, "clear": 0.22, "recovery": 0.11, "cost": 0.18, "breathing": 0.08, "adapt": 0.45}, (0.30, 0.55, 0.45)),
+    105: _spec(105, "Gut-Brain-Inflammationsschleife", "mental_medical", ("Microbiome", "Cytokines", "MoodBurden"), "Micro'=diet(1-Micro)-stress Cyto Micro; Cyto'=dysbiosis(1-Micro)+insult-clear Cyto; Mood'=cyto Cyto-resilience Micro Mood-rec Mood", "gut_brain_inflammation", {"diet": 0.08, "stress_damage": 0.10, "dysbiosis": 0.18, "insult": 0.04, "clear": 0.16, "cyto_gain": 0.25, "resilience": 0.16, "recovery": 0.07}, (0.65, 0.20, 0.30)),
+    106: _spec(106, "Tumor-Immune-Checkpoint-Therapie", "mental_medical", ("Tumor", "EffectorT", "Checkpoint", "Drug"), "T'=rT(1-T/K)-kill E T-drug D T; E'=prime T/(Km+T)+therapy D-exhaust C E-dE; C'=gain T-clear C-block D C; D'=dose(t)-cD", "tumor_immune_checkpoint", {"growth": 0.22, "k": 1.4, "kill": 0.38, "drug_kill": 0.18, "priming": 0.28, "km": 0.20, "immunotherapy": 0.18, "exhaustion": 0.25, "decay_e": 0.08, "checkpoint_gain": 0.24, "checkpoint_clear": 0.10, "block": 0.22, "dose": 0.45, "clear": 0.28}, (0.35, 0.22, 0.20, 0.0)),
+    107: _spec(107, "Within-Host HIV-Viraldynamik", "mental_medical", ("TargetCells", "InfectedCells", "Virus"), "T'=lambda-dT T-beta T V; I'=beta T V-delta I; V'=burst I-cV-therapy(t)V", "viral_dynamics", {"lambda": 0.18, "death": 0.04, "beta": 0.45, "delta": 0.35, "burst": 1.4, "clear": 0.70, "therapy": 0.45}, (1.0, 0.02, 0.08)),
+    108: _spec(108, "Sepsis: Zytokine, Schaden, Blutdruck", "mental_medical", ("Pathogen", "Cytokine", "Damage", "BloodPressure"), "P'=gP/(1+P)-kill C P-abxP; C'=immuneP-clearC+feedD; D'=tox C-repairD; BP'=rec(1-BP)-vaso C BP", "sepsis_inflammation", {"growth": 0.32, "kill": 0.42, "antibiotic": 0.08, "immune": 0.55, "clear": 0.34, "damage_feed": 0.10, "toxicity": 0.26, "repair": 0.12, "recovery": 0.18, "vasodilation": 0.22}, (0.22, 0.12, 0.05, 1.0)),
+    109: _spec(109, "Antibiotikaresistenz-Wettbewerb", "mental_medical", ("Sensitive", "Resistant", "Drug"), "S'=rS S(1-N/K)-kill D S-mut S; R'=rR R(1-N/K)+mut S-cost R-kR D R; D'=dose(t)-clearD", "resistance_competition", {"growth_s": 0.35, "growth_r": 0.24, "k": 1.2, "kill": 0.65, "mutation": 0.015, "cost": 0.04, "resistant_kill": 0.12, "dose": 0.55, "clear": 0.45}, (0.35, 0.04, 0.0)),
+    110: _spec(110, "Krebs: Sensitive und resistente Klone", "mental_medical", ("SensitiveTumor", "ResistantTumor", "Drug"), "S'=rS S(1-N/K)-kill D S-mutS; R'=rR R(1-N/K)+mutS-costR; D'=dose(t)-clearD", "cancer_resistance", {"growth_s": 0.24, "growth_r": 0.17, "k": 1.5, "kill": 0.40, "mutation": 0.010, "cost": 0.025, "dose": 0.42, "clear": 0.28}, (0.32, 0.03, 0.0)),
+    111: _spec(111, "Alzheimer Amyloid-Tau-Neuroinflammation", "mental_medical", ("Amyloid", "Tau", "Neurons", "Microglia"), "A'=prod-clearA A-micro M A; Tau'=seed A-clearT Tau; N'=-tox(A+Tau)N+repair(1-N); M'=activation(A+Tau)-resolution M", "alzheimer_cascade", {"prod": 0.055, "clear_a": 0.05, "micro_clear": 0.08, "tau_seed": 0.11, "clear_t": 0.045, "neurotox": 0.045, "repair": 0.012, "activation": 0.12, "resolution": 0.11}, (0.20, 0.08, 1.0, 0.12)),
+    112: _spec(112, "Parkinson Dopamin-Neuron-Verlust", "mental_medical", ("Neurons", "Dopamine", "MotorBurden"), "N'=-stress N+rescue(1-N); Dopamine'=synth N-clear D; Burden'=gain max(th-D,0)-adapt Burden", "parkinson_dopamine", {"stress": 0.025, "rescue": 0.008, "synth": 0.35, "clear": 0.22, "threshold": 0.55, "burden_gain": 0.22, "adapt": 0.08}, (1.0, 0.75, 0.08)),
+    113: _spec(113, "Epilepsie E-I-Seizure-Risk", "mental_medical", ("Excitation", "Inhibition", "Adaptation"), "E'=(-E+sigmoid(gEE E-gEI I-A+stim))/tauE; I'=(-I+sigmoid(gIE E-gII I))/tauI; A'=rec E-decay A", "seizure_ei", {"g_ee": 4.2, "g_ei": 3.5, "g_ie": 3.2, "g_ii": 1.0, "stim": -0.8, "tau_e": 1.0, "tau_i": 1.6, "recruit": 0.12, "decay": 0.08}, (0.18, 0.24, 0.10)),
+    114: _spec(114, "Migräne Cortical-Spreading-Dynamik", "mental_medical", ("Excitation", "Potassium", "Recovery"), "E'=stim+gainK-inhib R E-decayE; K'=releaseE-clearK; R'=restore(1-R)-fatigue E R", "migraine_csd", {"stim": 0.035, "k_gain": 0.28, "inhibition": 0.45, "decay": 0.22, "release": 0.24, "clear_k": 0.20, "restore": 0.10, "fatigue": 0.18}, (0.12, 0.10, 0.85)),
+    115: _spec(115, "Chronischer Schmerz und Sensibilisierung", "mental_medical", ("Nociception", "Sensitization", "Analgesia"), "N'=injury-analgesia A N-clearN; S'=plasticity N(1-S)-desens A S-decayS; A'=treat(t)-clearA", "pain_sensitization", {"injury": 0.08, "analgesia": 0.40, "clear_n": 0.16, "plasticity": 0.30, "desensitize": 0.22, "decay_s": 0.045, "treatment": 0.30, "clear_a": 0.24}, (0.22, 0.20, 0.0)),
+    116: _spec(116, "Diabetes Beta-Zell-Kompensation", "mental_medical", ("Glucose", "Insulin", "BetaCell"), "G'=meal+hepatic-uptake I G-basal(G-90); I'=secret Beta max(G-90)/(Km+G)-clearI; Beta'=comp hyper Beta-glucotox hyper Beta-turnover(Beta-1)", "beta_cell_diabetes", {"hepatic": 8.0, "uptake": 0.0025, "basal_clear": 0.05, "secretion": 1.25, "km": 120.0, "clear_i": 0.28, "compensation": 0.0008, "glucotoxicity": 0.0009, "turnover": 0.015}, (115.0, 10.0, 1.0)),
+    117: _spec(117, "Hypertonie RAAS-Druck-Regelkreis", "mental_medical", ("Pressure", "RAAS", "Natriuresis"), "P'=salt+raas R-natriuresis N P-relax(P-base); R'=signal(setpoint-P)-block R; N'=pressure max(P-base)-clearN", "hypertension_raas", {"salt": 0.08, "raas_gain": 0.28, "natriuresis": 0.22, "relax": 0.10, "baseline": 1.0, "setpoint": 0.98, "width": 0.08, "block": 0.12, "pressure_gain": 0.25, "clear_n": 0.16}, (1.08, 0.35, 0.20)),
+    118: _spec(118, "Asthma Entzündung und Bronchokonstriktion", "mental_medical", ("Inflammation", "Bronchoconstriction", "Medication"), "I'=allergen+eos B-steroid M I-clearI; B'=bronch I-bronchod M B-relaxB; M'=dose(t)-clearM", "asthma_inflammation", {"allergen": 0.08, "eos_gain": 0.10, "steroid": 0.28, "clear_i": 0.15, "bronch": 0.40, "bronchodilator": 0.35, "relax": 0.22, "dose": 0.38, "clear_m": 0.30}, (0.18, 0.12, 0.0)),
+    119: _spec(119, "Placebo-Nocebo-Erwartungsdynamik", "mental_medical", ("Expectation", "SymptomBurden", "Adherence"), "E'=reinforce(baseline-Symptom)-decay(E-neutral); Symptom'=stress-placebo max(E,0)Symptom+nocebo max(-E,0)-treat Adh Symptom; Adh'=trust sigmoid(E)(1-Adh)-burden Symptom Adh", "expectation_adherence", {"reinforcement": 0.16, "baseline": 0.55, "decay": 0.08, "neutral": 0.0, "stress": 0.06, "placebo": 0.20, "nocebo": 0.16, "treatment": 0.18, "trust": 0.20, "burden": 0.10}, (0.05, 0.55, 0.62)),
+    120: _spec(120, "Personalisierte Closed-Loop-Care", "mental_medical", ("Symptom", "Intervention", "Burden", "Trust"), "Intervention'=controller sigmoid((Symptom-target)/w)(1-I)-fatigue I; Symptom'=stress+Burden-efficacy I Trust Symptom-rec Symptom; Burden'=friction I-support Trust Burden-decay Burden; Trust'=success max(target-Symptom,0)-overload I Trust", "closed_loop_care", {"controller": 0.45, "target": 0.28, "width": 0.08, "fatigue": 0.18, "stress": 0.08, "efficacy": 0.42, "recovery": 0.08, "friction": 0.08, "support": 0.18, "decay": 0.10, "success": 0.18, "overload": 0.12}, (0.55, 0.05, 0.18, 0.62)),
 }
 
 
@@ -184,7 +214,7 @@ def rhs(model_id: int, t: float, y: State, params: Params | None = None) -> list
     """Evaluate dy/dt for one model.
 
     Args:
-        model_id: Integer from 1 to 90.
+        model_id: Integer key present in ``MODELS``.
         t: Current time.
         y: Current state vector.
         params: Optional parameter overrides.
@@ -443,6 +473,229 @@ def rhs(model_id: int, t: float, y: State, params: Params | None = None) -> list
     if kind == "water_city":
         shortage = sigmoid((_p(p, "threshold") - _y(y, 0)) / 0.06)
         return [_p(p, "inflow") - _y(y, 1), _p(p, "growth") * _y(y, 1) - _p(p, "conservation") * shortage * _y(y, 1)]
+    if kind == "hpa_axis":
+        stress = 0.08 + 0.03 * sin((2.0 * pi * t) / 24.0) + pulse(t, 18.0, 5.0, _p(p, "stress"))
+        cort_gr = max(_y(y, 2), 0.0) * max(_y(y, 3), 0.0)
+        return [
+            stress / (1.0 + _p(p, "feedback") * cort_gr) - 0.32 * _y(y, 0),
+            _p(p, "acth_drive") * _y(y, 0) / (1.0 + cort_gr) - 0.30 * _y(y, 1),
+            _p(p, "cort_drive") * _y(y, 1) - _p(p, "clear") * _y(y, 2),
+            _p(p, "gr_repair") * (1.0 - _y(y, 3)) - _p(p, "gr_damage") * max(_y(y, 2), 0.0) * _y(y, 3),
+        ]
+    if kind == "circadian_bistable_mood":
+        circadian = 0.5 + 0.5 * sin((2.0 * pi * t) / 24.0)
+        stress = pulse(t, 20.0, 3.0, 0.20)
+        return [
+            _p(p, "mood_gain") * _y(y, 0) - _p(p, "nonlinear") * _y(y, 0) ** 3 + _p(p, "stress_gain") * _y(y, 2) - _p(p, "drive_gain") * _y(y, 1),
+            _p(p, "entrain") * (circadian - _y(y, 1)) - _p(p, "cort_drag") * _y(y, 2),
+            _p(p, "base") + _p(p, "amp") * circadian + stress - _p(p, "clear") * _y(y, 2),
+        ]
+    if kind == "rumination_loop":
+        return [
+            _p(p, "load") + _p(p, "sensitivity") * _y(y, 1) - _p(p, "coping") * _y(y, 0),
+            _p(p, "trigger") * _y(y, 0) + _p(p, "habit") * _y(y, 1) * (1.0 - _y(y, 1)) - _p(p, "disengage") * _y(y, 1),
+            _p(p, "rumination_gain") * _y(y, 1) + _p(p, "stress_gain") * _y(y, 0) - _p(p, "recovery") * _y(y, 2),
+        ]
+    if kind == "stress_reward_mentalizing":
+        return [
+            _p(p, "load") - _p(p, "resilience") * _y(y, 2) * _y(y, 0),
+            _p(p, "reward_gain") / (1.0 + _p(p, "stress_suppression") * max(_y(y, 0), 0.0)) - _p(p, "reward_decay") * _y(y, 1),
+            _p(p, "practice") * (1.0 - _y(y, 2)) - _p(p, "stress_damage") * max(_y(y, 0), 0.0) * _y(y, 2),
+            _p(p, "burden_gain") * _y(y, 0) - _p(p, "reward_buffer") * _y(y, 1) - _p(p, "recovery") * _y(y, 3),
+        ]
+    if kind == "ssri_plasticity":
+        dose = _p(p, "dose") * periodic_pulse(t, 24.0, 1.0)
+        serotonin = max(_y(y, 1), 0.0)
+        return [
+            dose - _p(p, "ka") * _y(y, 0),
+            _p(p, "base") + _p(p, "release") - (_p(p, "clear") * serotonin) / (1.0 + _p(p, "inhibition") * max(_y(y, 0), 0.0)),
+            (_p(p, "adapt") * serotonin) / (_p(p, "km") + serotonin + 1e-9) - _p(p, "loss") * _y(y, 2),
+            _p(p, "stress") - _p(p, "benefit") * _y(y, 2) * _y(y, 3) - _p(p, "recovery") * _y(y, 3),
+        ]
+    if kind == "fear_extinction":
+        exposure = _p(p, "exposure") * periodic_pulse(t, 12.0, 2.0)
+        return [
+            _p(p, "reconsolidation") * _y(y, 2) * (1.0 - _y(y, 0)) - _p(p, "extinction") * exposure * _y(y, 1) * _y(y, 0),
+            _p(p, "learning") * exposure * (1.0 - _y(y, 1)) - _p(p, "forget") * _y(y, 1),
+            _p(p, "cue") * _y(y, 0) + _p(p, "stress") - _p(p, "calm") * _y(y, 1) * _y(y, 2),
+        ]
+    if kind == "panic_loop":
+        challenge = _p(p, "challenge") + pulse(t, 16.0, 2.0, 0.10)
+        return [
+            challenge + 0.04 * _y(y, 1) - _p(p, "breathing") * _y(y, 0),
+            _p(p, "sensitivity") * _y(y, 0) + _p(p, "anticipation") * _y(y, 2) - _p(p, "calm") * _y(y, 1),
+            _p(p, "learning") * _y(y, 1) * (1.0 - _y(y, 2)) - _p(p, "exposure") * _y(y, 2),
+        ]
+    if kind == "addiction_learning":
+        cue_input = _p(p, "cue") * periodic_pulse(t, 18.0, 2.2)
+        return [
+            cue_input - _p(p, "cue_decay") * _y(y, 0),
+            _p(p, "sensitization") * _y(y, 0) * (1.0 + _p(p, "learning") * (1.0 - _y(y, 2))) - _p(p, "extinction") * _y(y, 2) * _y(y, 1),
+            _p(p, "recovery") * (1.0 - _y(y, 2)) - _p(p, "stress") * _y(y, 1) * _y(y, 2) + _p(p, "treatment") * (1.0 - _y(y, 2)),
+        ]
+    if kind == "bipolar_oscillator":
+        return [
+            _y(y, 1),
+            _p(p, "drive") * (_p(p, "bias") - _y(y, 0)) - _p(p, "damping") * _y(y, 1) - _p(p, "nonlinear") * _y(y, 0) ** 3 + _p(p, "sleep_gain") * _y(y, 2),
+            _p(p, "mania") * max(_y(y, 0), 0.0) - _p(p, "recovery") * _y(y, 2),
+        ]
+    if kind == "social_isolation_attractor":
+        return [
+            _p(p, "outreach") * (1.0 - _y(y, 0)) - _p(p, "withdrawal") * _y(y, 1) * _y(y, 0),
+            _p(p, "stress") + _p(p, "isolation") * (1.0 - _y(y, 0)) - _p(p, "safety") * _y(y, 0) * _y(y, 1),
+            _p(p, "immune") * _y(y, 1) - _p(p, "clear") * _y(y, 2),
+        ]
+    if kind == "relapse_observer":
+        return [
+            _p(p, "load") - _p(p, "coping") * _y(y, 0),
+            _p(p, "disruption") + _p(p, "stress_sleep") * _y(y, 0) - _p(p, "sleep_recovery") * _y(y, 1),
+            _p(p, "gain") * (_y(y, 0) + _y(y, 1)) - _p(p, "clear") * _y(y, 2),
+            _p(p, "adapt") * (sigmoid((_y(y, 2) - _p(p, "threshold")) / _p(p, "width")) - _y(y, 3)),
+        ]
+    if kind == "exposure_learning":
+        exposure = periodic_pulse(t, 10.0, 2.0)
+        return [
+            _p(p, "trigger") + _p(p, "avoidance_relief") * _y(y, 2) - _p(p, "skill") * _y(y, 1) * _y(y, 0) - _p(p, "habituation") * exposure * _y(y, 0),
+            _p(p, "learning") * exposure * (1.0 - _y(y, 1)) - _p(p, "forget") * _y(y, 1),
+            _p(p, "threat") * _y(y, 0) * (1.0 - _y(y, 2)) - _p(p, "approach") * _y(y, 1) * _y(y, 2),
+        ]
+    if kind == "mindfulness_control":
+        practice = _p(p, "practice") * (0.6 + periodic_pulse(t, 24.0, 1.2, 0.8))
+        return [
+            _p(p, "trigger") + _p(p, "arousal_gain") * _y(y, 2) - _p(p, "decenter") * _y(y, 1) * _y(y, 0),
+            practice * (1.0 - _y(y, 1)) - _p(p, "fatigue") * _y(y, 2) * _y(y, 1),
+            _p(p, "stress") + _p(p, "rumination_gain") * _y(y, 0) - _p(p, "calm") * _y(y, 1) * _y(y, 2),
+        ]
+    if kind == "autonomic_balance":
+        stress = 0.06 + _p(p, "stress") * periodic_pulse(t, 12.0, 3.0)
+        return [
+            stress - _p(p, "vagal") * _y(y, 1) * _y(y, 0) - _p(p, "clear") * _y(y, 0),
+            _p(p, "recovery") * (1.0 - _y(y, 1)) - _p(p, "cost") * _y(y, 0) * _y(y, 1) + _p(p, "breathing") * periodic_pulse(t, 6.0, 1.0),
+            _p(p, "adapt") * (_y(y, 1) / (1.0 + max(_y(y, 0), 0.0)) - _y(y, 2)),
+        ]
+    if kind == "gut_brain_inflammation":
+        insult = _p(p, "insult") + pulse(t, 20.0, 4.0, 0.08)
+        return [
+            _p(p, "diet") * (1.0 - _y(y, 0)) - _p(p, "stress_damage") * _y(y, 1) * _y(y, 0),
+            _p(p, "dysbiosis") * (1.0 - _y(y, 0)) + insult - _p(p, "clear") * _y(y, 1),
+            _p(p, "cyto_gain") * _y(y, 1) - _p(p, "resilience") * _y(y, 0) * _y(y, 2) - _p(p, "recovery") * _y(y, 2),
+        ]
+    if kind == "tumor_immune_checkpoint":
+        dose = _p(p, "dose") * periodic_pulse(t, 14.0, 2.0)
+        return [
+            _p(p, "growth") * _y(y, 0) * (1.0 - _y(y, 0) / _p(p, "k")) - _p(p, "kill") * _y(y, 1) * _y(y, 0) - _p(p, "drug_kill") * _y(y, 3) * _y(y, 0),
+            _p(p, "priming") * _y(y, 0) / (_p(p, "km") + _y(y, 0) + 1e-9) + _p(p, "immunotherapy") * _y(y, 3) - _p(p, "exhaustion") * _y(y, 2) * _y(y, 1) - _p(p, "decay_e") * _y(y, 1),
+            _p(p, "checkpoint_gain") * _y(y, 0) - _p(p, "checkpoint_clear") * _y(y, 2) - _p(p, "block") * _y(y, 3) * _y(y, 2),
+            dose - _p(p, "clear") * _y(y, 3),
+        ]
+    if kind == "viral_dynamics":
+        therapy = _p(p, "therapy") * sigmoid(t - 15.0)
+        return [
+            _p(p, "lambda") - _p(p, "death") * _y(y, 0) - _p(p, "beta") * _y(y, 0) * _y(y, 2),
+            _p(p, "beta") * _y(y, 0) * _y(y, 2) - _p(p, "delta") * _y(y, 1),
+            _p(p, "burst") * _y(y, 1) - _p(p, "clear") * _y(y, 2) - therapy * _y(y, 2),
+        ]
+    if kind == "sepsis_inflammation":
+        antibiotic = _p(p, "antibiotic") * sigmoid(t - 10.0)
+        return [
+            _p(p, "growth") * _y(y, 0) / (1.0 + _y(y, 0)) - _p(p, "kill") * _y(y, 1) * _y(y, 0) - antibiotic * _y(y, 0),
+            _p(p, "immune") * _y(y, 0) - _p(p, "clear") * _y(y, 1) + _p(p, "damage_feed") * _y(y, 2),
+            _p(p, "toxicity") * _y(y, 1) - _p(p, "repair") * _y(y, 2),
+            _p(p, "recovery") * (1.0 - _y(y, 3)) - _p(p, "vasodilation") * _y(y, 1) * _y(y, 3),
+        ]
+    if kind == "resistance_competition":
+        total = _y(y, 0) + _y(y, 1)
+        dose = _p(p, "dose") * periodic_pulse(t, 12.0, 1.5)
+        return [
+            _p(p, "growth_s") * _y(y, 0) * (1.0 - total / _p(p, "k")) - _p(p, "kill") * _y(y, 2) * _y(y, 0) - _p(p, "mutation") * _y(y, 0),
+            _p(p, "growth_r") * _y(y, 1) * (1.0 - total / _p(p, "k")) + _p(p, "mutation") * _y(y, 0) - _p(p, "cost") * _y(y, 1) - _p(p, "resistant_kill") * _y(y, 2) * _y(y, 1),
+            dose - _p(p, "clear") * _y(y, 2),
+        ]
+    if kind == "cancer_resistance":
+        total = _y(y, 0) + _y(y, 1)
+        dose = _p(p, "dose") * periodic_pulse(t, 21.0, 3.0)
+        return [
+            _p(p, "growth_s") * _y(y, 0) * (1.0 - total / _p(p, "k")) - _p(p, "kill") * _y(y, 2) * _y(y, 0) - _p(p, "mutation") * _y(y, 0),
+            _p(p, "growth_r") * _y(y, 1) * (1.0 - total / _p(p, "k")) + _p(p, "mutation") * _y(y, 0) - _p(p, "cost") * _y(y, 1),
+            dose - _p(p, "clear") * _y(y, 2),
+        ]
+    if kind == "alzheimer_cascade":
+        toxic = max(_y(y, 0) + _y(y, 1), 0.0)
+        return [
+            _p(p, "prod") - _p(p, "clear_a") * _y(y, 0) - _p(p, "micro_clear") * _y(y, 3) * _y(y, 0),
+            _p(p, "tau_seed") * _y(y, 0) - _p(p, "clear_t") * _y(y, 1),
+            -_p(p, "neurotox") * toxic * _y(y, 2) + _p(p, "repair") * (1.0 - _y(y, 2)),
+            _p(p, "activation") * toxic - _p(p, "resolution") * _y(y, 3),
+        ]
+    if kind == "parkinson_dopamine":
+        return [
+            -_p(p, "stress") * _y(y, 0) + _p(p, "rescue") * (1.0 - _y(y, 0)),
+            _p(p, "synth") * _y(y, 0) - _p(p, "clear") * _y(y, 1),
+            _p(p, "burden_gain") * max(_p(p, "threshold") - _y(y, 1), 0.0) - _p(p, "adapt") * _y(y, 2),
+        ]
+    if kind == "seizure_ei":
+        drive_e = _p(p, "g_ee") * _y(y, 0) - _p(p, "g_ei") * _y(y, 1) - _y(y, 2) + _p(p, "stim")
+        drive_i = _p(p, "g_ie") * _y(y, 0) - _p(p, "g_ii") * _y(y, 1)
+        return [
+            (-_y(y, 0) + sigmoid(drive_e)) / _p(p, "tau_e"),
+            (-_y(y, 1) + sigmoid(drive_i)) / _p(p, "tau_i"),
+            _p(p, "recruit") * _y(y, 0) - _p(p, "decay") * _y(y, 2),
+        ]
+    if kind == "migraine_csd":
+        stim = _p(p, "stim") + pulse(t, 18.0, 2.0, 0.15)
+        return [
+            stim + _p(p, "k_gain") * _y(y, 1) - _p(p, "inhibition") * _y(y, 2) * _y(y, 0) - _p(p, "decay") * _y(y, 0),
+            _p(p, "release") * _y(y, 0) - _p(p, "clear_k") * _y(y, 1),
+            _p(p, "restore") * (1.0 - _y(y, 2)) - _p(p, "fatigue") * _y(y, 0) * _y(y, 2),
+        ]
+    if kind == "pain_sensitization":
+        treatment = _p(p, "treatment") * periodic_pulse(t, 24.0, 2.0)
+        return [
+            _p(p, "injury") - _p(p, "analgesia") * _y(y, 2) * _y(y, 0) - _p(p, "clear_n") * _y(y, 0),
+            _p(p, "plasticity") * _y(y, 0) * (1.0 - _y(y, 1)) - _p(p, "desensitize") * _y(y, 2) * _y(y, 1) - _p(p, "decay_s") * _y(y, 1),
+            treatment - _p(p, "clear_a") * _y(y, 2),
+        ]
+    if kind == "beta_cell_diabetes":
+        glucose = _y(y, 0)
+        meal = 35.0 * periodic_pulse(t, 8.0, 0.7)
+        hyper = max(glucose - 100.0, 0.0)
+        tox = max(glucose - 120.0, 0.0)
+        return [
+            meal + _p(p, "hepatic") - _p(p, "uptake") * _y(y, 1) * glucose - _p(p, "basal_clear") * (glucose - 90.0),
+            (_p(p, "secretion") * _y(y, 2) * max(glucose - 90.0, 0.0)) / (_p(p, "km") + glucose + 1e-9) - _p(p, "clear_i") * _y(y, 1),
+            _p(p, "compensation") * hyper * _y(y, 2) - _p(p, "glucotoxicity") * tox * _y(y, 2) - _p(p, "turnover") * (_y(y, 2) - 1.0),
+        ]
+    if kind == "hypertension_raas":
+        signal = sigmoid((_p(p, "setpoint") - _y(y, 0)) / _p(p, "width"))
+        return [
+            _p(p, "salt") + _p(p, "raas_gain") * _y(y, 1) - _p(p, "natriuresis") * _y(y, 2) * _y(y, 0) - _p(p, "relax") * (_y(y, 0) - _p(p, "baseline")),
+            signal - _p(p, "block") * _y(y, 1),
+            _p(p, "pressure_gain") * max(_y(y, 0) - _p(p, "baseline"), 0.0) - _p(p, "clear_n") * _y(y, 2),
+        ]
+    if kind == "asthma_inflammation":
+        allergen = _p(p, "allergen") + periodic_pulse(t, 18.0, 2.0, 0.15)
+        dose = _p(p, "dose") * periodic_pulse(t, 12.0, 1.0)
+        return [
+            allergen + _p(p, "eos_gain") * _y(y, 1) - _p(p, "steroid") * _y(y, 2) * _y(y, 0) - _p(p, "clear_i") * _y(y, 0),
+            _p(p, "bronch") * _y(y, 0) - _p(p, "bronchodilator") * _y(y, 2) * _y(y, 1) - _p(p, "relax") * _y(y, 1),
+            dose - _p(p, "clear_m") * _y(y, 2),
+        ]
+    if kind == "expectation_adherence":
+        positive = max(_y(y, 0), 0.0)
+        negative = max(-_y(y, 0), 0.0)
+        return [
+            _p(p, "reinforcement") * (_p(p, "baseline") - _y(y, 1)) - _p(p, "decay") * (_y(y, 0) - _p(p, "neutral")),
+            _p(p, "stress") - _p(p, "placebo") * positive * _y(y, 1) + _p(p, "nocebo") * negative - _p(p, "treatment") * _y(y, 2) * _y(y, 1),
+            _p(p, "trust") * sigmoid(_y(y, 0)) * (1.0 - _y(y, 2)) - _p(p, "burden") * _y(y, 1) * _y(y, 2),
+        ]
+    if kind == "closed_loop_care":
+        signal = sigmoid((_y(y, 0) - _p(p, "target")) / _p(p, "width"))
+        return [
+            _p(p, "stress") + _y(y, 2) - _p(p, "efficacy") * _y(y, 1) * _y(y, 3) * _y(y, 0) - _p(p, "recovery") * _y(y, 0),
+            _p(p, "controller") * signal * (1.0 - _y(y, 1)) - _p(p, "fatigue") * _y(y, 1),
+            _p(p, "friction") * _y(y, 1) - _p(p, "support") * _y(y, 3) * _y(y, 2) - _p(p, "decay") * _y(y, 2),
+            _p(p, "success") * max(_p(p, "target") - _y(y, 0), 0.0) - _p(p, "overload") * _y(y, 1) * _y(y, 3) + 0.02 * (1.0 - _y(y, 3)),
+        ]
 
     raise ValueError(f"Unhandled model preset: {kind}")
 

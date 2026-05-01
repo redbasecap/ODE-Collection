@@ -7,16 +7,17 @@ const CATEGORIES = [
   { id: "finance", label: { de: "F. Finanzen und Märkte", en: "F. Finance and Markets" }, accent: "#f4dc57" },
   { id: "physics", label: { de: "G. Physik, Technik, Alltag", en: "G. Physics, Technology, Everyday Life" }, accent: "#65d7c9" },
   { id: "society", label: { de: "H. Ökologie und Gesellschaft", en: "H. Ecology and Society" }, accent: "#f08ad6" },
+  { id: "mental_medical", label: { de: "I. Mentale & Medizinische Gesundheit", en: "I. Mental & Medical Health" }, accent: "#7ee787" },
 ];
 
 const I18N = {
   de: {
-    brandSub: "90 dynamische Modelle",
+    brandSub: "120 dynamische Modelle",
     navLibrary: "Bibliothek",
     navSimulator: "Simulator",
     heroEyebrow: "Differentialgleichungen als lebendige Sammlung",
-    heroTitle: "Die ODE-Bibliothek für Reproduktion, Hormone, Business, KI, Physik und Gesellschaft.",
-    heroLead: "Eine zweisprachige Web-App mit 90 Modellideen, animierten Trajektorien, sofort simulierbaren Graphen und einer Struktur, die später echte Daten aufnehmen kann.",
+    heroTitle: "Die ODE-Bibliothek für Reproduktion, Hormone, mentale Medizin, KI, Physik und Gesellschaft.",
+    heroLead: "Eine zweisprachige Web-App mit 120 Modellideen, animierten Trajektorien, sofort simulierbaren Graphen und einer Struktur, die später echte Daten aufnehmen kann.",
     heroPrimary: "Simulator starten",
     heroSecondary: "Alle Modelle ansehen",
     liveSystem: "Live-System",
@@ -28,8 +29,8 @@ const I18N = {
     statLang: "Sprachen",
     statAtlas: "ODE-Atlas",
     libraryEyebrow: "Bibliothek",
-    libraryTitle: "90 Modelle, sortierbar nach Domäne und Dynamik.",
-    libraryLead: "Suche nach Begriffen wie AMH, Churn, SIR, GPU, Akku oder Cash. Jeder Eintrag besitzt eine ODE-Kernidee, eine Formel und eine Startsimulation.",
+    libraryTitle: "120 Modelle, sortierbar nach Domäne und Dynamik.",
+    libraryLead: "Suche nach Begriffen wie AMH, HPA, PTSD, HIV, Tumor, SIR, GPU oder Cash. Jeder Eintrag besitzt eine ODE-Kernidee, eine Formel und eine Startsimulation.",
     searchLabel: "Suche",
     searchPlaceholder: "z.B. AMH, SaaS, SIR, Koffein",
     categoryLabel: "Kategorie",
@@ -39,10 +40,11 @@ const I18N = {
     simulatorTitle: "Wähle ein Modell, verändere Parameter, beobachte die Trajektorie.",
     odeCore: "ODE-Kern",
     observables: "Messgrößen",
+    evidenceBasis: "Evidenzbasis",
     parameters: "Parameter",
     graphLab: "Graph-Labor",
-    roadmapEyebrow: "Top-Projektpfad",
-    roadmapTitle: "Die 5 stärksten Ovarialreserve-Modelle für ein echtes Datenprojekt.",
+    roadmapEyebrow: "Forschungsfrontier",
+    roadmapTitle: "Die 5 stärksten Mental- und Medical-ODEs für ein echtes Datenprojekt.",
     footerDisclaimer: "Educational ODE simulations only. Medizinische und finanzielle Modelle sind keine Diagnose, Therapie-, Investment- oder Entscheidungsberatung.",
     backTop: "Zurück nach oben",
     cardGraph: "Graph",
@@ -61,12 +63,12 @@ const I18N = {
     },
   },
   en: {
-    brandSub: "90 dynamic models",
+    brandSub: "120 dynamic models",
     navLibrary: "Library",
     navSimulator: "Simulator",
     heroEyebrow: "Differential equations as a living collection",
-    heroTitle: "The ODE library for reproduction, hormones, business, AI, physics, and society.",
-    heroLead: "A bilingual web app with 90 model ideas, animated trajectories, instantly simulated graphs, and a structure ready for real data later.",
+    heroTitle: "The ODE library for reproduction, hormones, mental medicine, AI, physics, and society.",
+    heroLead: "A bilingual web app with 120 model ideas, animated trajectories, instantly simulated graphs, and a structure ready for real data later.",
     heroPrimary: "Start simulator",
     heroSecondary: "Explore all models",
     liveSystem: "Live system",
@@ -78,8 +80,8 @@ const I18N = {
     statLang: "languages",
     statAtlas: "ODE atlas",
     libraryEyebrow: "Library",
-    libraryTitle: "90 models, sortable by domain and dynamic behavior.",
-    libraryLead: "Search for terms such as AMH, churn, SIR, GPU, battery, or cash. Every entry includes an ODE core idea, a formula, and a starter simulation.",
+    libraryTitle: "120 models, sortable by domain and dynamic behavior.",
+    libraryLead: "Search for terms such as AMH, HPA, PTSD, HIV, tumor, SIR, GPU, or cash. Every entry includes an ODE core idea, a formula, and a starter simulation.",
     searchLabel: "Search",
     searchPlaceholder: "e.g. AMH, SaaS, SIR, caffeine",
     categoryLabel: "Category",
@@ -89,10 +91,11 @@ const I18N = {
     simulatorTitle: "Choose a model, adjust parameters, and watch the trajectory.",
     odeCore: "ODE core",
     observables: "Observables",
+    evidenceBasis: "Evidence basis",
     parameters: "Parameters",
     graphLab: "Graph lab",
-    roadmapEyebrow: "Top project path",
-    roadmapTitle: "The 5 strongest ovarian-reserve models for a real data project.",
+    roadmapEyebrow: "Research frontier",
+    roadmapTitle: "The 5 strongest mental and medical ODEs for a real data project.",
     footerDisclaimer: "Educational ODE simulations only. Medical and financial models are not diagnosis, treatment, investment, or decision advice.",
     backTop: "Back to top",
     cardGraph: "Graph",
@@ -1193,22 +1196,412 @@ const MODELS = [
     params: { inflow: 0.11, growth: 0.035, conservation: 0.2, threshold: 0.35 },
     preset: "waterCity",
   },
+  {
+    id: 91,
+    category: "mental_medical",
+    name: "HPA-Achse und allostatische Last",
+    dynamic: "feedback",
+    formula: "CRH'=stress/(1+f C GR)-c1 CRH; ACTH'=a CRH/(1+C GR)-c2 ACTH; C'=b ACTH-c3 C; GR'=repair(1-GR)-damage C GR",
+    description: "Hypothalamus-Hypophysen-Nebennieren-Achse mit Cortisol-Feedback und Glukokortikoid-Rezeptor-Adaption.",
+    variables: ["CRH", "ACTH", "Cortisol", "GR"],
+    observables: "Cortisol, CRH/ACTH, Rezeptor-Sensitivität",
+    params: { stress: 0.16, feedback: 1.4, acthDrive: 0.65, cortDrive: 0.55, clear: 0.28, grRepair: 0.08, grDamage: 0.1 },
+    preset: "hpaAxis",
+    evidence: ["HPA axis", "depression", "allostasis"],
+  },
+  {
+    id: 92,
+    category: "mental_medical",
+    name: "Zirkadiane Depression-Bistabilität",
+    dynamic: "rhythm",
+    formula: "M'=aM-bM^3+sC-rD; D'=q(circadian-D)-uC; C'=base+amp circadian+stress-cC",
+    description: "Mood-Burden, zirkadianer Drive und Cortisol können stabile oder kippende Zustände erzeugen.",
+    variables: ["MoodBurden", "CircadianDrive", "Cortisol"],
+    observables: "Symptomlast, Tagesrhythmus, Cortisol",
+    params: { moodGain: 0.18, nonlinear: 0.42, driveGain: 0.22, stressGain: 0.34, entrain: 0.2, cortDrag: 0.08, base: 0.2, amp: 0.18, clear: 0.25 },
+    preset: "circadianBistableMood",
+    evidence: ["bistability", "circadian", "mood"],
+  },
+  {
+    id: 93,
+    category: "mental_medical",
+    name: "Rumination-Stress-Depressionsschleife",
+    dynamic: "feedback",
+    formula: "S'=load+sens R-coping S; R'=trigger S+habit R(1-R)-disengage R; M'=aR+bS-rec M",
+    description: "Eine positive Schleife aus Stressoren, Rumination und Symptomlast als Interventionsziel.",
+    variables: ["Stressors", "Rumination", "MoodBurden"],
+    observables: "Stress, Rumination, depressive Last",
+    params: { load: 0.06, sensitivity: 0.1, coping: 0.18, trigger: 0.22, habit: 0.16, disengage: 0.11, ruminationGain: 0.32, stressGain: 0.18, recovery: 0.2 },
+    preset: "ruminationLoop",
+    evidence: ["rumination", "system dynamics", "depression"],
+  },
+  {
+    id: 94,
+    category: "mental_medical",
+    name: "Stress-Reward-Mentalizing Depression",
+    dynamic: "feedback",
+    formula: "S'=load-resilience Z S; R'=gain/(1+hS)-dR; Z'=practice(1-Z)-stress ZS; M'=aS-bR-recM",
+    description: "Stress senkt Belohnungssensitivität und Mentalizing; Reward puffert Symptomlast.",
+    variables: ["Stress", "Reward", "Mentalizing", "MoodBurden"],
+    observables: "Stress, Reward-Index, Mentalizing, Symptomlast",
+    params: { load: 0.1, resilience: 0.35, rewardGain: 0.24, stressSuppression: 1.2, rewardDecay: 0.16, practice: 0.08, stressDamage: 0.12, burdenGain: 0.28, rewardBuffer: 0.2, recovery: 0.16 },
+    preset: "stressRewardMentalizing",
+    evidence: ["RDoC", "reward", "social processes"],
+  },
+  {
+    id: 95,
+    category: "mental_medical",
+    name: "SSRI-Wirkverzögerung und Neuroplastizität",
+    dynamic: "compartment",
+    formula: "D'=dose-kaD; 5HT'=base+rel-clear 5HT/(1+iD); P'=adapt 5HT/(Km+5HT)-lossP; S'=stress-benefit P S-recS",
+    description: "PK/PD-Skeleton für frühe serotonerge Änderung und langsamere Symptomantwort über Plastizität.",
+    variables: ["Drug", "Serotonin", "Plasticity", "SymptomBurden"],
+    observables: "Wirkspiegel, Serotonin, Plastizität, Symptomlast",
+    params: { dose: 0.45, ka: 0.75, base: 0.1, release: 0.08, clear: 0.4, inhibition: 1.4, adapt: 0.16, km: 0.35, loss: 0.045, stress: 0.08, benefit: 0.24, recovery: 0.04 },
+    preset: "ssriPlasticity",
+    evidence: ["PK/PD", "SSRI", "plasticity"],
+  },
+  {
+    id: 96,
+    category: "mental_medical",
+    name: "PTSD-Furchtextinktion",
+    dynamic: "threshold",
+    formula: "F'=recon A(1-F)-ext exposure Safety F; Safety'=learn exposure(1-Safety)-forget Safety; A'=cueF+stress-calm Safety A",
+    description: "Exposition stärkt Safety-Memory und senkt Furcht nur, wenn Arousal und Erinnerung gemeinsam modelliert werden.",
+    variables: ["Fear", "SafetyMemory", "Arousal"],
+    observables: "Furcht, Safety Memory, Arousal",
+    params: { exposure: 0.65, reconsolidation: 0.18, extinction: 0.45, learning: 0.3, forget: 0.035, cue: 0.32, stress: 0.04, calm: 0.35 },
+    preset: "fearExtinction",
+    evidence: ["PTSD", "fear extinction", "learning"],
+  },
+  {
+    id: 97,
+    category: "mental_medical",
+    name: "Panik-CO2-Arousal-Schleife",
+    dynamic: "feedback",
+    formula: "CO2'=challenge-breath CO2; A'=sens CO2+anticip Avoid-calm A; Avoid'=learn A(1-Avoid)-exposure Avoid",
+    description: "Interozeptive CO2-Sensitivität, Arousal und Vermeidung bilden eine verstärkende Panikschleife.",
+    variables: ["CO2", "Arousal", "Avoidance"],
+    observables: "CO2-Proxy, Arousal, Vermeidung",
+    params: { challenge: 0.08, breathing: 0.18, sensitivity: 0.55, anticipation: 0.28, calm: 0.34, learning: 0.2, exposure: 0.08 },
+    preset: "panicLoop",
+    evidence: ["interoception", "panic", "avoidance"],
+  },
+  {
+    id: 98,
+    category: "mental_medical",
+    name: "Sucht: Reward-Learning und Craving",
+    dynamic: "feedback",
+    formula: "Cue'=cue(t)-dCue; Craving'=sens Cue(1+l(1-Control))-ext Control Craving; Control'=rec(1-Control)-stress Craving Control+treat(1-Control)",
+    description: "Cue-Sensitisierung, Craving und Kontrollkapazität als behandelbare dynamische Variablen.",
+    variables: ["Cue", "Craving", "Control"],
+    observables: "Cue-Salienz, Craving, Kontrolle",
+    params: { cue: 0.5, cueDecay: 0.28, sensitization: 0.42, learning: 0.75, extinction: 0.22, recovery: 0.08, stress: 0.2, treatment: 0.05 },
+    preset: "addictionLearning",
+    evidence: ["addiction", "reward learning", "control"],
+  },
+  {
+    id: 99,
+    category: "mental_medical",
+    name: "Bipolare Mood-Oszillation",
+    dynamic: "rhythm",
+    formula: "Mood'=Momentum; Momentum'=drive(bias-Mood)-d Momentum-nl Mood^3+sleep SleepDebt; SleepDebt'=mania max(Mood,0)-rec SleepDebt",
+    description: "Nichtlinearer Mood-Oszillator, bei dem Schlafschuld Phasenwechsel verstärken kann.",
+    variables: ["Mood", "Momentum", "SleepDebt"],
+    observables: "Mood-Lage, Momentum, Schlafschuld",
+    params: { drive: 0.16, bias: 0, damping: 0.08, nonlinear: 0.08, sleepGain: 0.2, mania: 0.18, recovery: 0.11 },
+    preset: "bipolarOscillator",
+    evidence: ["bipolar", "oscillation", "sleep"],
+  },
+  {
+    id: 100,
+    category: "mental_medical",
+    name: "Soziale Isolation als Attraktor",
+    dynamic: "feedback",
+    formula: "C'=outreach(1-C)-withdraw Threat C; Threat'=stress+iso(1-C)-safety C Threat; Infl'=immune Threat-clear Infl",
+    description: "Verbindung, Bedrohungswahrnehmung und Inflammation können in hilfreiche oder schädliche Attraktoren kippen.",
+    variables: ["Connection", "Threat", "Inflammation"],
+    observables: "Soziale Verbindung, Threat, Inflammation",
+    params: { outreach: 0.1, withdrawal: 0.24, stress: 0.04, isolation: 0.22, safety: 0.3, immune: 0.2, clear: 0.14 },
+    preset: "socialIsolationAttractor",
+    evidence: ["social isolation", "attractors", "inflammation"],
+  },
+  {
+    id: 101,
+    category: "mental_medical",
+    name: "Digitaler Relapse-Risiko-Beobachter",
+    dynamic: "observer",
+    formula: "Stress'=load-coping Stress; Sleep'=disrupt+s Stress-rec Sleep; Bio'=gain(Stress+Sleep)-clear Bio; Risk'=a(sigmoid((Bio-th)/w)-Risk)",
+    description: "Wearable- und Smartphone-Signale werden als geglätteter Risikobeobachter modelliert.",
+    variables: ["Stress", "SleepDebt", "Biomarker", "Risk"],
+    observables: "Stress, Schlafschuld, digitaler Marker, Relapse-Risiko",
+    params: { load: 0.08, coping: 0.16, disruption: 0.04, stressSleep: 0.18, sleepRecovery: 0.15, gain: 0.34, clear: 0.22, threshold: 0.5, width: 0.08, adapt: 0.5 },
+    preset: "relapseObserver",
+    evidence: ["digital phenotyping", "relapse", "observer"],
+  },
+  {
+    id: 102,
+    category: "mental_medical",
+    name: "Expositionstherapie und Skill-Aufbau",
+    dynamic: "feedback",
+    formula: "D'=trigger+relief Avoid-skill Skill D-hab exposure D; Skill'=learn exposure(1-Skill)-forget Skill; Avoid'=threat D(1-Avoid)-approach Skill Avoid",
+    description: "Exposition senkt Distress über Habituation und baut eine langsam vergessende Skill-Komponente auf.",
+    variables: ["Distress", "Skill", "Avoidance"],
+    observables: "Distress, Skill, Vermeidung",
+    params: { trigger: 0.06, avoidanceRelief: 0.12, skill: 0.35, habituation: 0.26, learning: 0.22, forget: 0.035, threat: 0.28, approach: 0.24 },
+    preset: "exposureLearning",
+    evidence: ["CBT", "exposure", "learning"],
+  },
+  {
+    id: 103,
+    category: "mental_medical",
+    name: "Achtsamkeit: Aufmerksamkeitskontrolle",
+    dynamic: "feedback",
+    formula: "R'=trigger+arousal A-decenter Attention R; Attention'=practice(1-Attention)-fatigue A Attention; A'=stress+rum R-calm Attention A",
+    description: "Aufmerksamkeitskontrolle wirkt als Bremse zwischen Arousal und Rumination.",
+    variables: ["Rumination", "Attention", "Arousal"],
+    observables: "Rumination, Attention, Arousal",
+    params: { trigger: 0.06, arousalGain: 0.22, decenter: 0.38, practice: 0.16, fatigue: 0.14, stress: 0.06, ruminationGain: 0.24, calm: 0.3 },
+    preset: "mindfulnessControl",
+    evidence: ["mindfulness", "attention", "rumination"],
+  },
+  {
+    id: 104,
+    category: "mental_medical",
+    name: "HRV und autonome Balance",
+    dynamic: "observer",
+    formula: "S'=stress-vagal P S-clear S; P'=rec(1-P)-cost S P+breath(t); HRV'=a(P/(1+S)-HRV)",
+    description: "Sympathikus, Parasympathikus und HRV als kompakter Stressregulations-Proxy.",
+    variables: ["Sympathetic", "Parasympathetic", "HRV"],
+    observables: "Autonomer Tonus und HRV",
+    params: { stress: 0.18, vagal: 0.35, clear: 0.22, recovery: 0.11, cost: 0.18, breathing: 0.08, adapt: 0.45 },
+    preset: "autonomicBalance",
+    evidence: ["HRV", "autonomic", "stress"],
+  },
+  {
+    id: 105,
+    category: "mental_medical",
+    name: "Gut-Brain-Inflammationsschleife",
+    dynamic: "feedback",
+    formula: "Micro'=diet(1-Micro)-stress Cyto Micro; Cyto'=dysbiosis(1-Micro)+insult-clear Cyto; Mood'=cyto Cyto-resilience Micro Mood-rec Mood",
+    description: "Mikrobiom-Diversität, Zytokine und Mood-Burden als immunmetabolische Schleife.",
+    variables: ["Microbiome", "Cytokines", "MoodBurden"],
+    observables: "Mikrobiom, Zytokine, Symptomlast",
+    params: { diet: 0.08, stressDamage: 0.1, dysbiosis: 0.18, insult: 0.04, clear: 0.16, cytoGain: 0.25, resilience: 0.16, recovery: 0.07 },
+    preset: "gutBrainInflammation",
+    evidence: ["gut-brain", "cytokines", "mood"],
+  },
+  {
+    id: 106,
+    category: "mental_medical",
+    name: "Tumor-Immune-Checkpoint-Therapie",
+    dynamic: "compartment",
+    formula: "T'=rT(1-T/K)-kill E T-drug D T; E'=prime T/(Km+T)+therapy D-exhaust C E-dE; C'=gain T-clear C-block D C; D'=dose(t)-cD",
+    description: "Tumor, Effektor-T-Zellen, Checkpoint-Last und Therapieimpulse in einem translationalen ODE-Skeleton.",
+    variables: ["Tumor", "EffectorT", "Checkpoint", "Drug"],
+    observables: "Tumorlast, Immunantwort, Checkpoint, Medikament",
+    params: { growth: 0.22, k: 1.4, kill: 0.38, drugKill: 0.18, priming: 0.28, km: 0.2, immunotherapy: 0.18, exhaustion: 0.25, decayE: 0.08, checkpointGain: 0.24, checkpointClear: 0.1, block: 0.22, dose: 0.45, clear: 0.28 },
+    preset: "tumorImmuneCheckpoint",
+    evidence: ["tumor-immune", "checkpoint", "ODE"],
+  },
+  {
+    id: 107,
+    category: "mental_medical",
+    name: "Within-Host HIV-Viraldynamik",
+    dynamic: "compartment",
+    formula: "T'=lambda-dT T-beta T V; I'=beta T V-delta I; V'=burst I-cV-therapy(t)V",
+    description: "Klassisches Target-Infected-Virus-Modell mit später Therapie-Suppression.",
+    variables: ["TargetCells", "InfectedCells", "Virus"],
+    observables: "Target cells, infected cells, viral load",
+    params: { lambda: 0.18, death: 0.04, beta: 0.45, delta: 0.35, burst: 1.4, clear: 0.7, therapy: 0.45 },
+    preset: "viralDynamics",
+    evidence: ["HIV dynamics", "viral load", "ODE"],
+  },
+  {
+    id: 108,
+    category: "mental_medical",
+    name: "Sepsis: Zytokine, Schaden, Blutdruck",
+    dynamic: "shock",
+    formula: "P'=gP/(1+P)-kill C P-abxP; C'=immuneP-clearC+feedD; D'=tox C-repairD; BP'=rec(1-BP)-vaso C BP",
+    description: "Pathogen, Zytokinantwort, Organschaden und Blutdruck als dynamische Sepsis-Skizze.",
+    variables: ["Pathogen", "Cytokine", "Damage", "BloodPressure"],
+    observables: "Pathogenlast, Cytokine, Schaden, Blutdruck",
+    params: { growth: 0.32, kill: 0.42, antibiotic: 0.08, immune: 0.55, clear: 0.34, damageFeed: 0.1, toxicity: 0.26, repair: 0.12, recovery: 0.18, vasodilation: 0.22 },
+    preset: "sepsisInflammation",
+    evidence: ["sepsis", "cytokines", "shock"],
+  },
+  {
+    id: 109,
+    category: "mental_medical",
+    name: "Antibiotikaresistenz-Wettbewerb",
+    dynamic: "compartment",
+    formula: "S'=rS S(1-N/K)-kill D S-mut S; R'=rR R(1-N/K)+mut S-cost R-kR D R; D'=dose(t)-clearD",
+    description: "Sensitive und resistente Stämme konkurrieren unter gepulster Antibiotikagabe.",
+    variables: ["Sensitive", "Resistant", "Drug"],
+    observables: "Sensitive Zellen, resistente Zellen, Wirkspiegel",
+    params: { growthS: 0.35, growthR: 0.24, k: 1.2, kill: 0.65, mutation: 0.015, cost: 0.04, resistantKill: 0.12, dose: 0.55, clear: 0.45 },
+    preset: "resistanceCompetition",
+    evidence: ["antibiotic resistance", "competition", "PK/PD"],
+  },
+  {
+    id: 110,
+    category: "mental_medical",
+    name: "Krebs: Sensitive und resistente Klone",
+    dynamic: "compartment",
+    formula: "S'=rS S(1-N/K)-kill D S-mutS; R'=rR R(1-N/K)+mutS-costR; D'=dose(t)-clearD",
+    description: "Tumorheterogenität mit sensiblen und resistenten Klonen unter Therapieimpulsen.",
+    variables: ["SensitiveTumor", "ResistantTumor", "Drug"],
+    observables: "Sensitive Klone, resistente Klone, Wirkstoff",
+    params: { growthS: 0.24, growthR: 0.17, k: 1.5, kill: 0.4, mutation: 0.01, cost: 0.025, dose: 0.42, clear: 0.28 },
+    preset: "cancerResistance",
+    evidence: ["cancer resistance", "clonal dynamics", "therapy"],
+  },
+  {
+    id: 111,
+    category: "mental_medical",
+    name: "Alzheimer Amyloid-Tau-Neuroinflammation",
+    dynamic: "feedback",
+    formula: "A'=prod-clearA A-micro M A; Tau'=seed A-clearT Tau; N'=-tox(A+Tau)N+repair(1-N); M'=activation(A+Tau)-resolution M",
+    description: "Amyloid, Tau, Neuronen und Mikroglia als gekoppelte neurodegenerative Kaskade.",
+    variables: ["Amyloid", "Tau", "Neurons", "Microglia"],
+    observables: "Amyloid, Tau, neuronale Reserve, Mikroglia",
+    params: { prod: 0.055, clearA: 0.05, microClear: 0.08, tauSeed: 0.11, clearT: 0.045, neurotox: 0.045, repair: 0.012, activation: 0.12, resolution: 0.11 },
+    preset: "alzheimerCascade",
+    evidence: ["Alzheimer", "amyloid-tau", "neuroinflammation"],
+  },
+  {
+    id: 112,
+    category: "mental_medical",
+    name: "Parkinson Dopamin-Neuron-Verlust",
+    dynamic: "decay",
+    formula: "N'=-stress N+rescue(1-N); Dopamine'=synth N-clear D; Burden'=gain max(th-D,0)-adapt Burden",
+    description: "Nigrostriatale Neuronen steuern Dopamin; unter Schwelle steigt motorische Symptomlast.",
+    variables: ["Neurons", "Dopamine", "MotorBurden"],
+    observables: "Neuronale Reserve, Dopamin, Motorburden",
+    params: { stress: 0.025, rescue: 0.008, synth: 0.35, clear: 0.22, threshold: 0.55, burdenGain: 0.22, adapt: 0.08 },
+    preset: "parkinsonDopamine",
+    evidence: ["Parkinson", "dopamine", "neurodegeneration"],
+  },
+  {
+    id: 113,
+    category: "mental_medical",
+    name: "Epilepsie E-I-Seizure-Risk",
+    dynamic: "threshold",
+    formula: "E'=(-E+sigmoid(gEE E-gEI I-A+stim))/tauE; I'=(-I+sigmoid(gIE E-gII I))/tauI; A'=rec E-decay A",
+    description: "Wilson-Cowan-artige Erregung-Hemmung-Dynamik mit Adaptation als Seizure-Risk-Kern.",
+    variables: ["Excitation", "Inhibition", "Adaptation"],
+    observables: "Excitation, Inhibition, Adaptation",
+    params: { gEE: 4.2, gEI: 3.5, gIE: 3.2, gII: 1, stim: -0.8, tauE: 1, tauI: 1.6, recruit: 0.12, decay: 0.08 },
+    preset: "seizureEI",
+    evidence: ["Wilson-Cowan", "epilepsy", "E/I balance"],
+  },
+  {
+    id: 114,
+    category: "mental_medical",
+    name: "Migräne Cortical-Spreading-Dynamik",
+    dynamic: "shock",
+    formula: "E'=stim+gainK-inhib R E-decayE; K'=releaseE-clearK; R'=restore(1-R)-fatigue E R",
+    description: "Ein reduziertes Excitation-Kalium-Recovery-System für spreading-depression-ähnliche Wellen.",
+    variables: ["Excitation", "Potassium", "Recovery"],
+    observables: "Erregung, Kalium-Proxy, Recovery",
+    params: { stim: 0.035, kGain: 0.28, inhibition: 0.45, decay: 0.22, release: 0.24, clearK: 0.2, restore: 0.1, fatigue: 0.18 },
+    preset: "migraineCsd",
+    evidence: ["migraine", "cortical spreading", "recovery"],
+  },
+  {
+    id: 115,
+    category: "mental_medical",
+    name: "Chronischer Schmerz und Sensibilisierung",
+    dynamic: "feedback",
+    formula: "N'=injury-analgesia A N-clearN; S'=plasticity N(1-S)-desens A S-decayS; A'=treat(t)-clearA",
+    description: "Nociception treibt Sensibilisierung; Analgesie senkt Schmerzinput und plastische Verstärkung.",
+    variables: ["Nociception", "Sensitization", "Analgesia"],
+    observables: "Nociception, Sensibilisierung, Analgesie",
+    params: { injury: 0.08, analgesia: 0.4, clearN: 0.16, plasticity: 0.3, desensitize: 0.22, decayS: 0.045, treatment: 0.3, clearA: 0.24 },
+    preset: "painSensitization",
+    evidence: ["chronic pain", "sensitization", "analgesia"],
+  },
+  {
+    id: 116,
+    category: "mental_medical",
+    name: "Diabetes Beta-Zell-Kompensation",
+    dynamic: "feedback",
+    formula: "G'=meal+hepatic-uptake I G-basal(G-90); I'=secret Beta max(G-90)/(Km+G)-clearI; Beta'=comp hyper Beta-glucotox hyper Beta-turnover(Beta-1)",
+    description: "Glukose, Insulin und Beta-Zell-Masse mit Kompensation und Glukotoxizität.",
+    variables: ["Glucose", "Insulin", "BetaCell"],
+    observables: "Glukose, Insulin, Beta-Zellen",
+    params: { hepatic: 8, uptake: 0.0025, basalClear: 0.05, secretion: 1.25, km: 120, clearI: 0.28, compensation: 0.0008, glucotoxicity: 0.0009, turnover: 0.015 },
+    preset: "betaCellDiabetes",
+    evidence: ["diabetes", "beta-cell", "glucose-insulin"],
+  },
+  {
+    id: 117,
+    category: "mental_medical",
+    name: "Hypertonie RAAS-Druck-Regelkreis",
+    dynamic: "feedback",
+    formula: "P'=salt+raas R-natriuresis N P-relax(P-base); R'=signal(setpoint-P)-block R; N'=pressure max(P-base)-clearN",
+    description: "Blutdruck, RAAS und Drucknatriurese als kompakter Regelkreis.",
+    variables: ["Pressure", "RAAS", "Natriuresis"],
+    observables: "Druck, RAAS, Natriurese",
+    params: { salt: 0.08, raasGain: 0.28, natriuresis: 0.22, relax: 0.1, baseline: 1, setpoint: 0.98, width: 0.08, block: 0.12, pressureGain: 0.25, clearN: 0.16 },
+    preset: "hypertensionRaas",
+    evidence: ["hypertension", "RAAS", "homeostasis"],
+  },
+  {
+    id: 118,
+    category: "mental_medical",
+    name: "Asthma Entzündung und Bronchokonstriktion",
+    dynamic: "feedback",
+    formula: "I'=allergen+eos B-steroid M I-clearI; B'=bronch I-bronchod M B-relaxB; M'=dose(t)-clearM",
+    description: "Allergen-getriebene Inflammation koppelt an Bronchokonstriktion und Medikamentenwirkung.",
+    variables: ["Inflammation", "Bronchoconstriction", "Medication"],
+    observables: "Inflammation, Bronchokonstriktion, Medikation",
+    params: { allergen: 0.08, eosGain: 0.1, steroid: 0.28, clearI: 0.15, bronch: 0.4, bronchodilator: 0.35, relax: 0.22, dose: 0.38, clearM: 0.3 },
+    preset: "asthmaInflammation",
+    evidence: ["asthma", "inflammation", "bronchoconstriction"],
+  },
+  {
+    id: 119,
+    category: "mental_medical",
+    name: "Placebo-Nocebo-Erwartungsdynamik",
+    dynamic: "feedback",
+    formula: "E'=reinforce(baseline-Symptom)-decay(E-neutral); Symptom'=stress-placebo max(E,0)Symptom+nocebo max(-E,0)-treat Adh Symptom; Adh'=trust sigmoid(E)(1-Adh)-burden Symptom Adh",
+    description: "Erwartung beeinflusst Symptomwahrnehmung und Adhärenz, mit positiver und negativer Richtung.",
+    variables: ["Expectation", "SymptomBurden", "Adherence"],
+    observables: "Erwartung, Symptomlast, Adhärenz",
+    params: { reinforcement: 0.16, baseline: 0.55, decay: 0.08, neutral: 0, stress: 0.06, placebo: 0.2, nocebo: 0.16, treatment: 0.18, trust: 0.2, burden: 0.1 },
+    preset: "expectationAdherence",
+    evidence: ["placebo", "nocebo", "adherence"],
+  },
+  {
+    id: 120,
+    category: "mental_medical",
+    name: "Personalisierte Closed-Loop-Care",
+    dynamic: "observer",
+    formula: "Intervention'=controller sigmoid((Symptom-target)/w)(1-I)-fatigue I; Symptom'=stress+Burden-efficacy I Trust Symptom-rec Symptom; Burden'=friction I-support Trust Burden-decay Burden; Trust'=success max(target-Symptom,0)-overload I Trust",
+    description: "Digitaler Controller, Intervention, Belastung und Vertrauen als Zukunftsmodell für adaptive Versorgung.",
+    variables: ["Symptom", "Intervention", "Burden", "Trust"],
+    observables: "Symptom, Intervention, Belastung, Vertrauen",
+    params: { controller: 0.45, target: 0.28, width: 0.08, fatigue: 0.18, stress: 0.08, efficacy: 0.42, recovery: 0.08, friction: 0.08, support: 0.18, decay: 0.1, success: 0.18, overload: 0.12 },
+    preset: "closedLoopCare",
+    evidence: ["precision medicine", "closed-loop", "digital health"],
+  },
 ];
 
 const PRIORITY = [
-  ["Altersabhängiges Ovarialreserve-Modell", "Einfach, erklärbar, starke Basislinie für Patientinnenpfade."],
-  ["Kompartimentmodell Reserve -> antral -> ovulatorisch", "Biologisch realistischer und anschlussfähig an Ultraschall/AFC."],
-  ["AMH/AFC-Beobachtungsmodell", "Verbindet latente Follikelpopulationen mit realen Messdaten."],
-  ["Bayesian Personalisation", "Macht individuelle Prognose statt Durchschnittskurve möglich."],
-  ["IVF-Response-Modell", "Direkter klinischer Output: erwartete Antwort pro Stimulationszyklus."],
+  ["HPA-Achse + digitale Stressdaten", "Verbindet Cortisol, Schlaf, Belastung und Relapse-Risiko zu testbaren Hypothesen."],
+  ["Furchtextinktion + Exposition", "Direkt anschlussfähig an Therapieprozesse und Lernmarker bei PTSD und Angst."],
+  ["Tumor-Immune-Checkpoint", "Ein klinisch relevantes ODE-Backbone für adaptive Immuntherapie-Simulationen."],
+  ["Alzheimer Amyloid-Tau-Mikroglia", "Macht neurodegenerative Kaskaden als Intervention-Targets explorierbar."],
+  ["Closed-Loop-Care", "Brücke zwischen Digital Health, personalisierter Dosierung und Patient Burden."],
 ];
 
 const PRIORITY_EN = [
-  ["Age-dependent ovarian reserve model", "Simple, explainable, and a strong baseline for patient pathways."],
-  ["Compartment model: reserve -> antral -> ovulatory", "More biologically realistic and easy to connect to ultrasound or AFC."],
-  ["AMH/AFC observation model", "Links latent follicle populations to real measurements."],
-  ["Bayesian personalisation", "Enables individual forecasts instead of an average curve."],
-  ["IVF response model", "Produces a clinically meaningful output: expected response per stimulation cycle."],
+  ["HPA axis + digital stress data", "Connects cortisol, sleep, load, and relapse risk into testable hypotheses."],
+  ["Fear extinction + exposure", "Maps naturally to therapy processes and learning markers in PTSD and anxiety."],
+  ["Tumor-immune checkpoint", "A clinically relevant ODE backbone for adaptive immunotherapy simulations."],
+  ["Alzheimer amyloid-tau-microglia", "Turns neurodegenerative cascades into explorable intervention targets."],
+  ["Closed-loop care", "Bridges digital health, personalized dosing, and patient burden."],
 ];
 
 const MODEL_EN = {
@@ -1302,6 +1695,36 @@ const MODEL_EN = {
   88: ["Wildfire spread", "Fuel, fire, and burned area.", "Fuel, fire, burned"],
   89: ["Lake algae bloom", "Nutrients, algae, and oxygen.", "Nutrients, algae, oxygen"],
   90: ["Urban water consumption", "Demand, storage, and inflow.", "Water storage, demand"],
+  91: ["HPA axis and allostatic load", "Hypothalamic-pituitary-adrenal axis with cortisol feedback and glucocorticoid-receptor adaptation.", "Cortisol, CRH/ACTH, receptor sensitivity"],
+  92: ["Circadian depression bistability", "Mood burden, circadian drive, and cortisol can create stable or tipping states.", "Symptom burden, circadian rhythm, cortisol"],
+  93: ["Rumination-stress-depression loop", "A positive loop among stressors, rumination, and symptom burden as an intervention target.", "Stress, rumination, depressive burden"],
+  94: ["Stress-reward-mentalizing depression", "Stress lowers reward sensitivity and mentalizing; reward buffers symptom burden.", "Stress, reward index, mentalizing, symptom burden"],
+  95: ["SSRI response lag and neuroplasticity", "PK/PD skeleton for fast serotonergic change and slower symptom response through plasticity.", "Drug level, serotonin, plasticity, symptom burden"],
+  96: ["PTSD fear extinction", "Exposure strengthens safety memory and lowers fear when arousal and memory are modeled together.", "Fear, safety memory, arousal"],
+  97: ["Panic CO2-arousal loop", "Interoceptive CO2 sensitivity, arousal, and avoidance form a reinforcing panic loop.", "CO2 proxy, arousal, avoidance"],
+  98: ["Addiction reward learning and craving", "Cue sensitization, craving, and control capacity as treatable dynamic variables.", "Cue salience, craving, control"],
+  99: ["Bipolar mood oscillator", "Nonlinear mood oscillator where sleep debt can amplify phase changes.", "Mood state, momentum, sleep debt"],
+  100: ["Social isolation as an attractor", "Connection, threat perception, and inflammation can tip into helpful or harmful attractors.", "Social connection, threat, inflammation"],
+  101: ["Digital relapse-risk observer", "Wearable and smartphone signals are modeled as a smoothed risk observer.", "Stress, sleep debt, digital marker, relapse risk"],
+  102: ["Exposure therapy and skill growth", "Exposure lowers distress through habituation and builds a slowly forgotten skill component.", "Distress, skill, avoidance"],
+  103: ["Mindfulness attentional control", "Attentional control acts as a brake between arousal and rumination.", "Rumination, attention, arousal"],
+  104: ["HRV and autonomic balance", "Sympathetic tone, parasympathetic tone, and HRV as a compact stress-regulation proxy.", "Autonomic tone and HRV"],
+  105: ["Gut-brain inflammation loop", "Microbiome diversity, cytokines, and mood burden as an immunometabolic loop.", "Microbiome, cytokines, symptom burden"],
+  106: ["Tumor-immune checkpoint therapy", "Tumor, effector T cells, checkpoint burden, and therapy pulses in a translational ODE skeleton.", "Tumor burden, immune response, checkpoint, drug"],
+  107: ["Within-host HIV viral dynamics", "Classic target-infected-virus model with later therapy suppression.", "Target cells, infected cells, viral load"],
+  108: ["Sepsis: cytokines, damage, blood pressure", "Pathogen, cytokine response, organ damage, and blood pressure as a dynamic sepsis sketch.", "Pathogen load, cytokines, damage, blood pressure"],
+  109: ["Antibiotic resistance competition", "Sensitive and resistant strains compete under pulsed antibiotic dosing.", "Sensitive cells, resistant cells, drug level"],
+  110: ["Cancer: sensitive and resistant clones", "Tumor heterogeneity with sensitive and resistant clones under therapy pulses.", "Sensitive clones, resistant clones, drug"],
+  111: ["Alzheimer amyloid-tau-neuroinflammation", "Amyloid, tau, neurons, and microglia as a coupled neurodegenerative cascade.", "Amyloid, tau, neuronal reserve, microglia"],
+  112: ["Parkinson dopamine neuron loss", "Nigrostriatal neurons drive dopamine; motor burden rises below a threshold.", "Neuronal reserve, dopamine, motor burden"],
+  113: ["Epilepsy E-I seizure risk", "Wilson-Cowan-like excitation-inhibition dynamics with adaptation as a seizure-risk core.", "Excitation, inhibition, adaptation"],
+  114: ["Migraine cortical-spreading dynamics", "Reduced excitation-potassium-recovery system for spreading-depression-like waves.", "Excitation, potassium proxy, recovery"],
+  115: ["Chronic pain and sensitization", "Nociception drives sensitization; analgesia lowers pain input and plastic amplification.", "Nociception, sensitization, analgesia"],
+  116: ["Diabetes beta-cell compensation", "Glucose, insulin, and beta-cell mass with compensation and glucotoxicity.", "Glucose, insulin, beta cells"],
+  117: ["Hypertension RAAS pressure loop", "Blood pressure, RAAS, and pressure natriuresis as a compact control loop.", "Pressure, RAAS, natriuresis"],
+  118: ["Asthma inflammation and bronchoconstriction", "Allergen-driven inflammation couples to bronchoconstriction and medication effect.", "Inflammation, bronchoconstriction, medication"],
+  119: ["Placebo-nocebo expectation dynamics", "Expectation affects symptom perception and adherence in positive and negative directions.", "Expectation, symptom burden, adherence"],
+  120: ["Personalized closed-loop care", "Digital controller, intervention, burden, and trust as a future model for adaptive care.", "Symptom, intervention, burden, trust"],
 };
 
 const qs = (selector) => document.querySelector(selector);
@@ -1338,6 +1761,12 @@ function modelDescription(model) {
 
 function modelObservables(model) {
   return currentLang === "en" ? MODEL_EN[model.id]?.[2] ?? model.observables : model.observables;
+}
+
+function modelEvidence(model) {
+  const evidence = model.evidence ?? [];
+  if (!evidence.length) return currentLang === "en" ? "educational model skeleton" : "didaktisches Modell-Skeleton";
+  return evidence.join(" · ");
 }
 
 function scientificProgress(rawProgress) {
@@ -1450,6 +1879,36 @@ function initialState(model) {
     wildfire: [1, 0.02, 0],
     algae: [0.5, 0.08, 0.9],
     waterCity: [0.8, 0.16],
+    hpaAxis: [0.25, 0.22, 0.35, 0.7],
+    circadianBistableMood: [0.08, 0.2, 0.35],
+    ruminationLoop: [0.2, 0.15, 0.2],
+    stressRewardMentalizing: [0.25, 0.45, 0.55, 0.25],
+    ssriPlasticity: [0, 0.35, 0.1, 0.8],
+    fearExtinction: [0.75, 0.18, 0.42],
+    panicLoop: [0.22, 0.18, 0.25],
+    addictionLearning: [0.12, 0.2, 0.55],
+    bipolarOscillator: [0.15, 0.05, 0.2],
+    socialIsolationAttractor: [0.55, 0.25, 0.16],
+    relapseObserver: [0.22, 0.18, 0.2, 0.08],
+    exposureLearning: [0.45, 0.12, 0.55],
+    mindfulnessControl: [0.42, 0.25, 0.3],
+    autonomicBalance: [0.3, 0.55, 0.45],
+    gutBrainInflammation: [0.65, 0.2, 0.3],
+    tumorImmuneCheckpoint: [0.35, 0.22, 0.2, 0],
+    viralDynamics: [1, 0.02, 0.08],
+    sepsisInflammation: [0.22, 0.12, 0.05, 1],
+    resistanceCompetition: [0.35, 0.04, 0],
+    cancerResistance: [0.32, 0.03, 0],
+    alzheimerCascade: [0.2, 0.08, 1, 0.12],
+    parkinsonDopamine: [1, 0.75, 0.08],
+    seizureEI: [0.18, 0.24, 0.1],
+    migraineCsd: [0.12, 0.1, 0.85],
+    painSensitization: [0.22, 0.2, 0],
+    betaCellDiabetes: [115, 10, 1],
+    hypertensionRaas: [1.08, 0.35, 0.2],
+    asthmaInflammation: [0.18, 0.12, 0],
+    expectationAdherence: [0.05, 0.55, 0.62],
+    closedLoopCare: [0.55, 0.05, 0.18, 0.62],
   };
   return [...(presets[model.preset] ?? [1])];
 }
@@ -1623,7 +2082,7 @@ function derivatives(model, t, y, knobs = {}) {
     case "liquidity":
       return [p.inflow - p.outflow, p.adapt * (sigmoid((p.threshold - y[0]) / p.width) - y[1])];
     case "cooling":
-      return [-p.k * (y[0] - p.ambient)];
+      return [-(p.k ?? p.conductance) * (y[0] - (p.ambient ?? p.outside))];
     case "battery": {
       const charge = periodicPulse(t, 24, 3, p.charge);
       return [charge - p.load * (1 + 0.4 * Math.sin(t * 0.5) ** 2)];
@@ -1667,6 +2126,249 @@ function derivatives(model, t, y, knobs = {}) {
     case "waterCity": {
       const shortage = sigmoid((p.threshold - y[0]) / 0.06);
       return [p.inflow - y[1], p.growth * y[1] - p.conservation * shortage * y[1]];
+    }
+    case "hpaAxis": {
+      const stress = 0.08 + 0.03 * Math.sin((2 * Math.PI * t) / 24) + pulse(t, 18, 5, p.stress);
+      const cortGr = Math.max(y[2], 0) * Math.max(y[3], 0);
+      return [
+        stress / (1 + p.feedback * cortGr) - 0.32 * y[0],
+        (p.acthDrive * y[0]) / (1 + cortGr) - 0.3 * y[1],
+        p.cortDrive * y[1] - p.clear * y[2],
+        p.grRepair * (1 - y[3]) - p.grDamage * Math.max(y[2], 0) * y[3],
+      ];
+    }
+    case "circadianBistableMood": {
+      const circadian = 0.5 + 0.5 * Math.sin((2 * Math.PI * t) / 24);
+      const stress = pulse(t, 20, 3, 0.2);
+      return [
+        p.moodGain * y[0] - p.nonlinear * y[0] ** 3 + p.stressGain * y[2] - p.driveGain * y[1],
+        p.entrain * (circadian - y[1]) - p.cortDrag * y[2],
+        p.base + p.amp * circadian + stress - p.clear * y[2],
+      ];
+    }
+    case "ruminationLoop":
+      return [
+        p.load + p.sensitivity * y[1] - p.coping * y[0],
+        p.trigger * y[0] + p.habit * y[1] * (1 - y[1]) - p.disengage * y[1],
+        p.ruminationGain * y[1] + p.stressGain * y[0] - p.recovery * y[2],
+      ];
+    case "stressRewardMentalizing":
+      return [
+        p.load - p.resilience * y[2] * y[0],
+        p.rewardGain / (1 + p.stressSuppression * Math.max(y[0], 0)) - p.rewardDecay * y[1],
+        p.practice * (1 - y[2]) - p.stressDamage * Math.max(y[0], 0) * y[2],
+        p.burdenGain * y[0] - p.rewardBuffer * y[1] - p.recovery * y[3],
+      ];
+    case "ssriPlasticity": {
+      const dose = p.dose * periodicPulse(t, 24, 1, 1);
+      const serotonin = Math.max(y[1], 0);
+      return [
+        dose - p.ka * y[0],
+        p.base + p.release - (p.clear * serotonin) / (1 + p.inhibition * Math.max(y[0], 0)),
+        (p.adapt * serotonin) / (p.km + serotonin + 1e-6) - p.loss * y[2],
+        p.stress - p.benefit * y[2] * y[3] - p.recovery * y[3],
+      ];
+    }
+    case "fearExtinction": {
+      const exposure = p.exposure * periodicPulse(t, 12, 2, 1);
+      return [
+        p.reconsolidation * y[2] * (1 - y[0]) - p.extinction * exposure * y[1] * y[0],
+        p.learning * exposure * (1 - y[1]) - p.forget * y[1],
+        p.cue * y[0] + p.stress - p.calm * y[1] * y[2],
+      ];
+    }
+    case "panicLoop": {
+      const challenge = p.challenge + pulse(t, 16, 2, 0.1);
+      return [
+        challenge + 0.04 * y[1] - p.breathing * y[0],
+        p.sensitivity * y[0] + p.anticipation * y[2] - p.calm * y[1],
+        p.learning * y[1] * (1 - y[2]) - p.exposure * y[2],
+      ];
+    }
+    case "addictionLearning": {
+      const cueInput = p.cue * periodicPulse(t, 18, 2.2, 1);
+      return [
+        cueInput - p.cueDecay * y[0],
+        p.sensitization * y[0] * (1 + p.learning * (1 - y[2])) - p.extinction * y[2] * y[1],
+        p.recovery * (1 - y[2]) - p.stress * y[1] * y[2] + p.treatment * (1 - y[2]),
+      ];
+    }
+    case "bipolarOscillator":
+      return [
+        y[1],
+        p.drive * (p.bias - y[0]) - p.damping * y[1] - p.nonlinear * y[0] ** 3 + p.sleepGain * y[2],
+        p.mania * Math.max(y[0], 0) - p.recovery * y[2],
+      ];
+    case "socialIsolationAttractor":
+      return [
+        p.outreach * (1 - y[0]) - p.withdrawal * y[1] * y[0],
+        p.stress + p.isolation * (1 - y[0]) - p.safety * y[0] * y[1],
+        p.immune * y[1] - p.clear * y[2],
+      ];
+    case "relapseObserver":
+      return [
+        p.load - p.coping * y[0],
+        p.disruption + p.stressSleep * y[0] - p.sleepRecovery * y[1],
+        p.gain * (y[0] + y[1]) - p.clear * y[2],
+        p.adapt * (sigmoid((y[2] - p.threshold) / p.width) - y[3]),
+      ];
+    case "exposureLearning": {
+      const exposure = periodicPulse(t, 10, 2, 1);
+      return [
+        p.trigger + p.avoidanceRelief * y[2] - p.skill * y[1] * y[0] - p.habituation * exposure * y[0],
+        p.learning * exposure * (1 - y[1]) - p.forget * y[1],
+        p.threat * y[0] * (1 - y[2]) - p.approach * y[1] * y[2],
+      ];
+    }
+    case "mindfulnessControl": {
+      const practice = p.practice * (0.6 + periodicPulse(t, 24, 1.2, 0.8));
+      return [
+        p.trigger + p.arousalGain * y[2] - p.decenter * y[1] * y[0],
+        practice * (1 - y[1]) - p.fatigue * y[2] * y[1],
+        p.stress + p.ruminationGain * y[0] - p.calm * y[1] * y[2],
+      ];
+    }
+    case "autonomicBalance": {
+      const stress = 0.06 + p.stress * periodicPulse(t, 12, 3, 1);
+      return [
+        stress - p.vagal * y[1] * y[0] - p.clear * y[0],
+        p.recovery * (1 - y[1]) - p.cost * y[0] * y[1] + p.breathing * periodicPulse(t, 6, 1, 1),
+        p.adapt * (y[1] / (1 + Math.max(y[0], 0)) - y[2]),
+      ];
+    }
+    case "gutBrainInflammation": {
+      const insult = p.insult + pulse(t, 20, 4, 0.08);
+      return [
+        p.diet * (1 - y[0]) - p.stressDamage * y[1] * y[0],
+        p.dysbiosis * (1 - y[0]) + insult - p.clear * y[1],
+        p.cytoGain * y[1] - p.resilience * y[0] * y[2] - p.recovery * y[2],
+      ];
+    }
+    case "tumorImmuneCheckpoint": {
+      const dose = p.dose * periodicPulse(t, 14, 2, 1);
+      return [
+        p.growth * y[0] * (1 - y[0] / p.k) - p.kill * y[1] * y[0] - p.drugKill * y[3] * y[0],
+        (p.priming * y[0]) / (p.km + y[0] + 1e-6) + p.immunotherapy * y[3] - p.exhaustion * y[2] * y[1] - p.decayE * y[1],
+        p.checkpointGain * y[0] - p.checkpointClear * y[2] - p.block * y[3] * y[2],
+        dose - p.clear * y[3],
+      ];
+    }
+    case "viralDynamics": {
+      const therapy = p.therapy * sigmoid(t - 15);
+      return [
+        p.lambda - p.death * y[0] - p.beta * y[0] * y[2],
+        p.beta * y[0] * y[2] - p.delta * y[1],
+        p.burst * y[1] - p.clear * y[2] - therapy * y[2],
+      ];
+    }
+    case "sepsisInflammation": {
+      const antibiotic = p.antibiotic * sigmoid(t - 10);
+      return [
+        (p.growth * y[0]) / (1 + y[0]) - p.kill * y[1] * y[0] - antibiotic * y[0],
+        p.immune * y[0] - p.clear * y[1] + p.damageFeed * y[2],
+        p.toxicity * y[1] - p.repair * y[2],
+        p.recovery * (1 - y[3]) - p.vasodilation * y[1] * y[3],
+      ];
+    }
+    case "resistanceCompetition": {
+      const total = y[0] + y[1];
+      const dose = p.dose * periodicPulse(t, 12, 1.5, 1);
+      return [
+        p.growthS * y[0] * (1 - total / p.k) - p.kill * y[2] * y[0] - p.mutation * y[0],
+        p.growthR * y[1] * (1 - total / p.k) + p.mutation * y[0] - p.cost * y[1] - p.resistantKill * y[2] * y[1],
+        dose - p.clear * y[2],
+      ];
+    }
+    case "cancerResistance": {
+      const total = y[0] + y[1];
+      const dose = p.dose * periodicPulse(t, 21, 3, 1);
+      return [
+        p.growthS * y[0] * (1 - total / p.k) - p.kill * y[2] * y[0] - p.mutation * y[0],
+        p.growthR * y[1] * (1 - total / p.k) + p.mutation * y[0] - p.cost * y[1],
+        dose - p.clear * y[2],
+      ];
+    }
+    case "alzheimerCascade": {
+      const toxic = Math.max(y[0] + y[1], 0);
+      return [
+        p.prod - p.clearA * y[0] - p.microClear * y[3] * y[0],
+        p.tauSeed * y[0] - p.clearT * y[1],
+        -p.neurotox * toxic * y[2] + p.repair * (1 - y[2]),
+        p.activation * toxic - p.resolution * y[3],
+      ];
+    }
+    case "parkinsonDopamine":
+      return [
+        -p.stress * y[0] + p.rescue * (1 - y[0]),
+        p.synth * y[0] - p.clear * y[1],
+        p.burdenGain * Math.max(p.threshold - y[1], 0) - p.adapt * y[2],
+      ];
+    case "seizureEI": {
+      const driveE = p.gEE * y[0] - p.gEI * y[1] - y[2] + p.stim;
+      const driveI = p.gIE * y[0] - p.gII * y[1];
+      return [(-y[0] + sigmoid(driveE)) / p.tauE, (-y[1] + sigmoid(driveI)) / p.tauI, p.recruit * y[0] - p.decay * y[2]];
+    }
+    case "migraineCsd": {
+      const stim = p.stim + pulse(t, 18, 2, 0.15);
+      return [
+        stim + p.kGain * y[1] - p.inhibition * y[2] * y[0] - p.decay * y[0],
+        p.release * y[0] - p.clearK * y[1],
+        p.restore * (1 - y[2]) - p.fatigue * y[0] * y[2],
+      ];
+    }
+    case "painSensitization": {
+      const treatment = p.treatment * periodicPulse(t, 24, 2, 1);
+      return [
+        p.injury - p.analgesia * y[2] * y[0] - p.clearN * y[0],
+        p.plasticity * y[0] * (1 - y[1]) - p.desensitize * y[2] * y[1] - p.decayS * y[1],
+        treatment - p.clearA * y[2],
+      ];
+    }
+    case "betaCellDiabetes": {
+      const glucose = y[0];
+      const meal = 35 * periodicPulse(t, 8, 0.7, 1);
+      const hyper = Math.max(glucose - 100, 0);
+      const tox = Math.max(glucose - 120, 0);
+      return [
+        meal + p.hepatic - p.uptake * y[1] * glucose - p.basalClear * (glucose - 90),
+        (p.secretion * y[2] * Math.max(glucose - 90, 0)) / (p.km + glucose + 1e-6) - p.clearI * y[1],
+        p.compensation * hyper * y[2] - p.glucotoxicity * tox * y[2] - p.turnover * (y[2] - 1),
+      ];
+    }
+    case "hypertensionRaas": {
+      const signal = sigmoid((p.setpoint - y[0]) / p.width);
+      return [
+        p.salt + p.raasGain * y[1] - p.natriuresis * y[2] * y[0] - p.relax * (y[0] - p.baseline),
+        signal - p.block * y[1],
+        p.pressureGain * Math.max(y[0] - p.baseline, 0) - p.clearN * y[2],
+      ];
+    }
+    case "asthmaInflammation": {
+      const allergen = p.allergen + periodicPulse(t, 18, 2, 0.15);
+      const dose = p.dose * periodicPulse(t, 12, 1, 1);
+      return [
+        allergen + p.eosGain * y[1] - p.steroid * y[2] * y[0] - p.clearI * y[0],
+        p.bronch * y[0] - p.bronchodilator * y[2] * y[1] - p.relax * y[1],
+        dose - p.clearM * y[2],
+      ];
+    }
+    case "expectationAdherence": {
+      const positive = Math.max(y[0], 0);
+      const negative = Math.max(-y[0], 0);
+      return [
+        p.reinforcement * (p.baseline - y[1]) - p.decay * (y[0] - p.neutral),
+        p.stress - p.placebo * positive * y[1] + p.nocebo * negative - p.treatment * y[2] * y[1],
+        p.trust * sigmoid(y[0]) * (1 - y[2]) - p.burden * y[1] * y[2],
+      ];
+    }
+    case "closedLoopCare": {
+      const signal = sigmoid((y[0] - p.target) / p.width);
+      return [
+        p.stress + y[2] - p.efficacy * y[1] * y[3] * y[0] - p.recovery * y[0],
+        p.controller * signal * (1 - y[1]) - p.fatigue * y[1],
+        p.friction * y[1] - p.support * y[3] * y[2] - p.decay * y[2],
+        p.success * Math.max(p.target - y[0], 0) - p.overload * y[1] * y[3] + 0.02 * (1 - y[3]),
+      ];
     }
     default:
       return [-0.05 * y[0]];
@@ -1812,6 +2514,7 @@ function renderModels(models) {
   grid.innerHTML = "";
   models.forEach((model, index) => {
     const category = categoryById.get(model.category);
+    const evidence = (model.evidence ?? []).slice(0, 3).map((tag) => `<span>${tag}</span>`).join("");
     const card = document.createElement("article");
     card.className = "model-card";
     card.style.setProperty("--accent", category?.accent ?? "#fff");
@@ -1823,6 +2526,7 @@ function renderModels(models) {
       </div>
       <h3>${modelName(model)}</h3>
       <p>${modelDescription(model)}</p>
+      ${evidence ? `<div class="evidence-tags">${evidence}</div>` : ""}
       <code>${model.formula}</code>
       <footer>
         <span>${categoryLabel(category) || model.category}</span>
@@ -1845,7 +2549,8 @@ function filterModels() {
   const dynamic = qs("#dynamic-select").value;
   const result = MODELS.filter((model) => {
     const english = MODEL_EN[model.id]?.join(" ") ?? "";
-    const haystack = `${model.name} ${model.description} ${model.formula} ${model.observables} ${english}`.toLowerCase();
+    const evidence = (model.evidence ?? []).join(" ");
+    const haystack = `${model.name} ${model.description} ${model.formula} ${model.observables} ${english} ${evidence}`.toLowerCase();
     return (category === "all" || model.category === category) && (dynamic === "all" || model.dynamic === dynamic) && (!search || haystack.includes(search));
   });
   renderModels(result);
@@ -1860,6 +2565,7 @@ function selectModel(model) {
   qs("#selected-description").textContent = modelDescription(model);
   qs("#selected-formula").textContent = model.formula;
   qs("#selected-observables").textContent = modelObservables(model);
+  qs("#selected-evidence").textContent = modelEvidence(model);
   qs("#selected-parameters").textContent = Object.keys(model.params).join(", ");
   qs("#chart-title").textContent = modelName(model);
   renderControls(model);
